@@ -1,5 +1,12 @@
 Rails.application.routes.draw do
 
+  scope module: :public do
+    resources :posts, only: [:new, :create, :index, :show] do
+      resources :players, only: [:create]
+    end
+  end
+
+
   devise_for :users, controllers: {
     registrations: "public/registrations",
     sessions: "public/sessions"
