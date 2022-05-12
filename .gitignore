@@ -40,5 +40,5 @@ yarn-debug.log*
 .yarn-integrity
 
 #管理者情報の非公開設定
-/db/seeds.rb
+db/seeds.rb
 
