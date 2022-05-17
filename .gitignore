@@ -42,3 +42,4 @@ yarn-debug.log*
 #管理者情報の非公開設定
 db/seeds.rb
 
+/.env
