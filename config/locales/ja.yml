@@ -1,0 +1,8 @@
+ja:
+  enums:
+    club:
+      division:
+        choose_one: "選択してください"
+        division_1: "J1"
+        division_2: "J2"
+        division_3: "J3"
