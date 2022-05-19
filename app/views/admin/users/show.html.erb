@@ -3,3 +3,4 @@
 <%= @user.introduction %>
 <%= link_to "編集", edit_admin_user_path(@user) %>
 <%= link_to "ユーザーの強制退会", admin_send_off_path(@user) %>
+<%= render 'public/posts/index', posts: @posts %>

@@ -1,6 +1,9 @@
-<h1>スタジアム作成</h1>
+<h1>スタジアムの新規作成</h1>
 <%= form_with model: @stadium, url: admin_stadiums_path do |f| %>
 <%= f.label :スタジアム名 %>
-<%= f.text_field :name %>
-<%= f.submit "保存" %>
+<%= f.text_field :name %><br>
+<%= f.label :保有クラブ %>
+<%= f.select :club_id, options_from_collection_for_select(Club.all, :id, :name) %><br>
+<%= f.submit "作成" %>
 <% end %>
+<%= link_to "スタジアム一覧", admin_stadiums_path %>

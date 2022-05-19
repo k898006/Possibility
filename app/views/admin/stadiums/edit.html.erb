@@ -1,2 +1,10 @@
-<h1>Admin::Stadiums#edit</h1>
-<p>Find me in app/views/admin/stadiums/edit.html.erb</p>
+<h1><%= @stadium.name %>の編集</h1>
+<%= form_with model: @stadium, url: admin_stadium_path do |f| %>
+<%= f.label :スタジアム名 %>
+<%= f.text_field :name %><br>
+<%= f.label :保有クラブ %>
+<%= f.select :club_id, options_from_collection_for_select(Club.all, :id, :name) %><br>
+<%= f.submit "更新" %>
+<% end %>
+<%= link_to "スタジアムの詳細", admin_stadium_path(@stadium) %>
+<%= link_to "スタジアムの一覧", admin_stadiums_path %>

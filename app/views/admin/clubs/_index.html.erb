@@ -1,0 +1,21 @@
+<h1>クラブ一覧</h1>
+<table>
+  <thead>
+    <tr>
+      <th>クラブ名</th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <% clubs.each do |club| %>
+    <tr>
+      <td><%= club.name %></td>
+      <% if admin_signed_in? %>
+      <td><%= link_to "クラブの詳細", admin_club_path(club) %></td>
+      <td><%= link_to "クラブの編集", edit_admin_club_path(club) %></td>
+      <% end %>
+    </tr>
+    <% end %>
+  </tbody>
+</table>

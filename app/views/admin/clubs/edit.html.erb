@@ -6,3 +6,5 @@
 <%= f.select :division, Club.divisions.keys.map {|k| [I18n.t("enums.club.division.#{k}"), k]} %>
 <%= f.submit "保存" %>
 <% end %>
+<%= link_to "クラブの詳細", admin_club_path(@club) %>
+<%= link_to "クラブの一覧", admin_clubs_path %>

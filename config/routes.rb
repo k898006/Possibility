@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
 
+
    devise_for :users, controllers: {
     registrations: "public/registrations",
     sessions: "public/sessions"
@@ -26,6 +27,7 @@ Rails.application.routes.draw do
     patch 'users/:id/out' => 'users#out', as: 'out'
     resources :clubs, only: [:new, :create, :index, :show, :edit, :update, :destroy]
     resources :stadiums, only: [:new, :create, :index, :show, :edit, :update, :destroy]
+    resources :posts, only: [:index, :show, :destroy]
   end
 
 
