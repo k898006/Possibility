@@ -16,6 +16,7 @@ Rails.application.routes.draw do
 
   scope module: :public do
     root to:"homes#top"
+    resources :stadiums, only: [:index, :show]
     resources :posts, only: [:new, :create, :index, :show, :edit, :update, :destroy] do
       collection do
         post :dynamic_stadium

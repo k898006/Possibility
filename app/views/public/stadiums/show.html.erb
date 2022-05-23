@@ -1,0 +1,17 @@
+<div>
+  <%= @stadium.name %>
+  <p>所有クラブ：<%= @stadium.club.name %></p>
+</div>
+
+<div>
+  <h5><%= @stadium.name %>について投稿する</h5>
+  <%= form_with model: @post, url: posts_path do |f| %>
+  <%= f.label :画像 %>
+  <%= f.file_filed :images %>
+  <%= f.label :タイトル %>
+  <%= f.text_field :title %>
+  <%= f.label :詳細 %>
+  <%= f.text_area :caption %>
+  <%= f.submit "投稿" %>
+  <% end %>
+</div>

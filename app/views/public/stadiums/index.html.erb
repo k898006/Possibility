@@ -1,0 +1,19 @@
+<h1>スタジアム一覧</h1>
+<table>
+  <thead>
+    <tr>
+      <th>所有クラブ</th>
+      <th>スタジアム名</th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @stadiums.each do |stadium| %>
+    <tr>
+      <td><%= stadium.club.name %></td>
+      <td><%= stadium.name %></td>
+      <td><%= link_to "スタジアムのページへ", stadium_path(stadium) %></td>
+    </tr>
+    <% end %>
+  </tbody>
+</table>
