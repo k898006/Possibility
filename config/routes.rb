@@ -28,7 +28,6 @@ Rails.application.routes.draw do
         get :likes
       end
     end
-    match 'posts/dynamic_stadium', to: 'posts#dynamic_stadium', via: [:get, :post]
   end
 
   namespace :admin do
