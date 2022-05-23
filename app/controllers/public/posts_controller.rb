@@ -5,17 +5,22 @@ class Public::PostsController < ApplicationController
 
   def new
     @post = Post.new
+    @clubs = Club.all
   end
 
   def create
     @post = Post.new(post_params)
     @post.user_id = current_user.id
-    @stadium = Stadium.find(params[:post][:stadium_id])
-    @post.stadium_id = @stadium.id
-    if @post.save
-      redirect_to posts_path
-    else
+    if params[:post][:club_confirmed].present? && params[:post][:club_confirmed] == "true"
+      @stadium = Stadium.find(params[:post][:stadium_id])
+      @post.stadium_id = @stadium.id
+      if @post.save
+        redirect_to posts_path
+      else
       render :new
+      end
+    else
+      @stadiums = Stadium.where(club_id: params[:post][:club_id])
     end
   end
 
@@ -26,6 +31,7 @@ class Public::PostsController < ApplicationController
   def show
     @post = Post.find(params[:id])
     @user = @post.user
+    @comment = Comment.new
   end
 
   def edit
@@ -56,7 +62,7 @@ class Public::PostsController < ApplicationController
 
   private
   def post_params
-    params.require(:post).permit(:title, :caption, images: [])
+    params.require(:post).permit(:club_id, :stadium_id, :title, :caption, :club_confirmed, images: [])
   end
 
   def correct_user

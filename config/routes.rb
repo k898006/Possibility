@@ -16,8 +16,19 @@ Rails.application.routes.draw do
 
   scope module: :public do
     root to:"homes#top"
-    resources :posts, only: [:new, :create, :index, :show, :edit, :update, :destroy]
-    resources :users, only: [:index, :show, :edit, :update]
+    resources :posts, only: [:new, :create, :index, :show, :edit, :update, :destroy] do
+      collection do
+        post :dynamic_stadium
+      end
+      resources :comments, only: [:create, :destroy]
+      resource :likes, only: [:create, :destroy]
+    end
+    resources :users, only: [:index, :show, :edit, :update] do
+      member do
+        get :likes
+      end
+    end
+    match 'posts/dynamic_stadium', to: 'posts#dynamic_stadium', via: [:get, :post]
   end
 
   namespace :admin do

@@ -1,8 +1,12 @@
+<%= javascript_pack_tag "posts/new" %>
 <h1>新規投稿</h1>
-<%= form_with model: @post, url: posts_path do |f| %>
+<%= form_with model: @post, url: posts_path, id: "form", local: false do |f| %>
   <div>
+    <%= f.label :クラブ %>
+    <%= f.select :club_id, options_from_collection_for_select(@clubs, :id, :name) %>
+  </div>
+  <div id="stadium_select">
     <%= f.label :スタジアム %>
-    <%= f.select :stadium_id, options_from_collection_for_select(Stadium.all, :id, :name) %>
   </div>
   <div>
     <%= f.label :画像 %>
@@ -17,6 +21,6 @@
     <%= f.text_area :caption %>
   </div>
   <div>
-    <%= f.submit "作成" %>
+    <%= f.submit "作成", id: "button" %>
   </div>
 <% end %>

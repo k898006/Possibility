@@ -1,5 +1,8 @@
 class Post < ApplicationRecord
 
+  validates :title, presence: true
+  validates :caption, presence: true
+
   has_many_attached :images
 
   #def get_image
@@ -9,10 +12,13 @@ class Post < ApplicationRecord
     #end
     #images
   #end
-
+  has_many :comments, dependent: :destroy
   belongs_to :user
   belongs_to :stadium
+  has_many :likes, dependent: :destroy
 
-  validates :title, presence: true
-  validates :caption, presence: true
+  def liked_by?(user)
+    likes.exists?(user_id: user.id)
+  end
+
 end

@@ -1,0 +1,21 @@
+<h1>いいね一覧</h1>
+<table>
+  <thead>
+    <tr>
+      <th>ユーザー名</th>
+      <th>スタジアム</th>
+      <th>タイトル</th>
+      <th>いいね数</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @like_posts.each do |post| %>
+      <tr>
+        <td><%= post.user.name %></td>
+        <td><%= post.stadium.name %></td>
+        <td><%= link_to post.title, post_path(post) %></td>
+        <td><%= post.likes.count %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

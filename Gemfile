@@ -64,3 +64,5 @@ group :production do
 end
 
 gem 'enum_help'
+
+gem 'jquery-rails'
