@@ -1,4 +1,18 @@
-<h1><%= post.title %></h1>
+<h2 class="text-center"><%= post.title %></h2>
+
+<div class>
+<% if post.images.attached? %>
+  <% post.images.each do |image| %>
+    <section class="d-flex px-1">
+      <%= image_tag image, width: 150, height: 200 %>
+      <% end %>
+    </section>
+<% else %>
+  <%= image_tag 'no_image.jpeg' %>
+<% end %>
+</div>
+
+<div class="p-1">
 <% if user_signed_in? %>
   <%= link_to user_path(@user) do %>
     <%= post.user.name %>
@@ -8,17 +22,9 @@
     <%= post.user.name %>
   <% end %>
 <% end %>
+</div>
 
-<% if post.images.attached? %>
-  <% post.images.each do |image| %>
-    <%= image_tag image, width: 200, height: 200 %>
-  <% end %>
-<% else %>
-  <%= image_tag 'no_image.jpeg' %>
-<% end %>
-
-<h3>詳細</h3>
-<%= post.caption %>
-
-
+<div class="border class="p-1"">
+  <%= post.caption %>
+</div>
 

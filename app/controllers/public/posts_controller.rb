@@ -3,26 +3,38 @@ class Public::PostsController < ApplicationController
   before_action :correct_user, only: [:edit, :update]
 
 
-  def new
-    @post = Post.new
-    @clubs = Club.all
-  end
+  #def new
+    #@post = Post.new
+    #@clubs = Club.all
+  #end
 
-  def create
-    @post = Post.new(post_params)
-    @post.user_id = current_user.id
-    if params[:post][:club_confirmed].present? && params[:post][:club_confirmed] == "true"
+  #def create
+    #@post = Post.new(post_params)
+    #@post.user_id = current_user.id
+    #if params[:post][:club_confirmed].present? && params[:post][:club_confirmed] == "true"
+      #@stadium = Stadium.find(params[:post][:stadium_id])
+      #@post.stadium_id = @stadium.id
+      #if @post.save
+        #redirect_to posts_path
+      #else
+      #render :new
+      #end
+    #else
+      #@stadiums = Stadium.where(club_id: params[:post][:club_id])
+    #end
+  #end
+
+    def create
       @stadium = Stadium.find(params[:post][:stadium_id])
+      @post = Post.new(post_params)
       @post.stadium_id = @stadium.id
-      if @post.save
-        redirect_to posts_path
+      @post.user_id = current_user.id
+    　if @post.save
+        redirect_to stadium_path(@stadium)
       else
-      render :new
+        redirect_to request.referer
       end
-    else
-      @stadiums = Stadium.where(club_id: params[:post][:club_id])
     end
-  end
 
   def index
     @posts = Post.all
@@ -62,7 +74,7 @@ class Public::PostsController < ApplicationController
 
   private
   def post_params
-    params.require(:post).permit(:club_id, :stadium_id, :title, :caption, :club_confirmed, images: [])
+    params.require(:post).permit(:stadium_id, :title, :caption, images: [ ])
   end
 
   def correct_user

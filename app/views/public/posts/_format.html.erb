@@ -1,0 +1,19 @@
+<h5><strong><%= stadium.name %></strong><br>について投稿する</h5>
+<%= form_with model: post, url: posts_path do |f| %>
+  <div class="p-1">
+    <%= f.label :画像 %>
+    <%= f.file_field :images, multiple: true %>
+  </div>
+  <div class="p-1">
+    <%= f.label :タイトル %><br>
+    <%= f.text_field :title %>
+  </div>
+  <div class="p-1">
+    <%= f.label :詳細 %><br>
+    <%= f.text_area :caption, rows: 10 %>
+  </div>
+  <div>
+    <%= f.hidden_field :stadium_id, value: stadium.id %>
+    <%= f.submit "投稿" %>
+  </div>
+<% end %>

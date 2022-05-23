@@ -1,9 +1,0 @@
-<h1>クラブの新規作成</h1>
-<%= form_with model: @club, url: admin_clubs_path do |f| %>
-<%= f.label :クラブ名 %>
-<%= f.text_field :name %>
-<%= f.label :所属リーグ %>
-<%= f.select :division, Club.divisions.keys.map {|k| [I18n.t("enums.club.division.#{k}"), k]} %>
-<%= f.submit "保存" %>
-<% end %>
-<%= link_to "クラブの一覧", admin_clubs_path %>

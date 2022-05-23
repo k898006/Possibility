@@ -2,6 +2,7 @@ class Post < ApplicationRecord
 
   validates :title, presence: true
   validates :caption, presence: true
+  #validate :images_length
 
   has_many_attached :images
 
@@ -20,5 +21,13 @@ class Post < ApplicationRecord
   def liked_by?(user)
     likes.exists?(user_id: user.id)
   end
+
+  private
+  #def images_length
+    #if images.length > 4
+      #images.purge
+      #errors.add(:images, "は4枚以内に")
+    #end
+  #end
 
 end

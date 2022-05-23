@@ -1,9 +1,11 @@
+
+
 <h1>クラブ一覧</h1>
-<table>
+<table class="table">
   <thead>
     <tr>
       <th>クラブ名</th>
-      <th></th>
+      <th>スタジアム</th>
       <th></th>
     </tr>
   </thead>
@@ -11,9 +13,18 @@
     <% clubs.each do |club| %>
     <tr>
       <td><%= club.name %></td>
+      <td>
+        <% club.stadiums.each do |stadium| %>
+          <%= link_to admin_stadium_path(stadium) do %>
+            <%= stadium.name %><br>
+          <% end %>
+        <% end %>
+      </td>
       <% if admin_signed_in? %>
-      <td><%= link_to "クラブの詳細", admin_club_path(club) %></td>
-      <td><%= link_to "クラブの編集", edit_admin_club_path(club) %></td>
+      <td>
+        <%= link_to "クラブの詳細", admin_club_path(club) %>
+        <%= link_to "クラブの編集", edit_admin_club_path(club) %>
+      </td>
       <% end %>
     </tr>
     <% end %>

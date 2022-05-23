@@ -1,1 +1,11 @@
-<%= render 'index', clubs: @clubs %>
+<div class="container">
+  <div class="row">
+    <div class="col-md-4">
+      <%= render 'new', club: @club %>
+    </div>
+
+    <div class="col-md-8">
+      <%= render 'index', clubs: @clubs %>
+    </div>
+  </div>
+</div>

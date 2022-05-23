@@ -1,8 +1,5 @@
 class Admin::ClubsController < ApplicationController
-  def new
-    @club = Club.new
-  end
-
+  
   def create
     @club = Club.new(club_params)
     if @club.save
@@ -12,6 +9,7 @@ class Admin::ClubsController < ApplicationController
   end
 
   def index
+    @club = Club.new
     @clubs = Club.all
   end
 

@@ -1,37 +1,43 @@
-<h1>編集</h1>
-<%= form_with model: @post do |f| %>
-<div>
-    <%= f.label :スタジアム %>
-    <%= f.select :stadium_id, options_from_collection_for_select(Stadium.all, :id, :name) %>
-</div>
-<% if @post.images.attached? %>
-  <p>選択済みの画像（削除する画像にチェックをつけてください）</p>
-  <% @post.images.each do |image| %>
-  <div>
-    <%= f.check_box :image_ids, {multiple: true }, image.id, false %>
-    <label for="post_images_ids_<%= image.id %>" >
-      <%= image_tag image, size: '100x100' %>
-    </label>
+<div class="container">
+  <div class="row">
+    <div class="center-block">
+      <h1>編集</h1>
+      <%= form_with model: @post do |f| %>
+      <div>
+        <%= f.label :スタジアム %>
+        <%= f.select :stadium_id, options_from_collection_for_select(Stadium.all, :id, :name) %>
+      </div>
+      <% if @post.images.attached? %>
+        <p>選択済みの画像（削除する画像にチェックをつけてください）</p>
+        <% @post.images.each do |image| %>
+        <div>
+          <%= f.check_box :image_ids, {multiple: true }, image.id, false %>
+          <label for="post_images_ids_<%= image.id %>" >
+            <%= image_tag image, size: '100x100' %>
+          </label>
+        </div>
+        <% end %>
+      <% end %>
+      <div>
+        <%= f.label :画像 %>
+        <%= f.file_field :images, multiple: true %>
+      </div>
+      <div>
+        <%= f.label :タイトル %>
+        <%= f.text_field :title %>
+      </div>
+      <div>
+        <%= f.label :詳細 %><br>
+        <%= f.text_area :caption %>
+      </div>
+      <div>
+        <%= f.submit "変更を保存", class: "btn btn-sm btn-success" %>
+      </div>
+      <% end %>
+      <%= link_to "詳細へ戻る", post_path(@post), class: "btn btn-sm btn-primary" %>
+      <%= link_to "一覧へ戻る", posts_path, class: "btn btn-sm btn-info" %>
+      <%= link_to "削除", post_path(@post), method: :delete "btn btn-sm btn-danger" %>
+    </div>
   </div>
-  <% end %>
-<% end %>
-<div>
-  <%= f.label :画像 %>
-  <%= f.file_field :images, multiple: true %>
 </div>
-<div>
-  <%= f.label :タイトル %>
-  <%= f.text_field :title %>
-</div>
-<div>
-  <%= f.label :詳細 %><br>
-  <%= f.text_area :caption %>
-</div>
-<div>
-  <%= f.submit "変更を保存" %>
-</div>
-<% end %>
-<%= link_to "詳細へ戻る", post_path(@post) %>
-<%= link_to "一覧へ戻る", posts_path %>
-<%= link_to "削除", post_path(@post), method: :delete %>
 

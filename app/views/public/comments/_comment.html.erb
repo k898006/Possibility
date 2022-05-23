@@ -1,15 +1,22 @@
 <h3>コメント</h3>
-  <p>コメント数：<%= post.comments.count %>件</p>
-  <% post.comments.each do |comment| %>
-    <%= comment.user.name %>
-    <%= comment.comment %>
-    <%= comment.created_at.strftime('%Y/%m/%d') %>
-    <% if comment.user == current_user %>
-      <%= link_to "削除", post_comment_path(comment.post, comment), method: :delete %>
+  <div class="p-1">
+    <p>コメント数：<%= post.comments.count %>件</p>
+    <% post.comments.each do |comment| %>
+      <section class="p-1">
+        <%= comment.user.name %>
+        <%= comment.comment %>
+        <%= comment.created_at.strftime('%Y/%m/%d') %>
+        <% if comment.user == current_user %>
+          <%= link_to "削除", post_comment_path(comment.post, comment), method: :delete %>
+          <% end %>
+      </section>
     <% end %>
-  <% end %>
-  <%= form_with model: [post, comment] do |f| %>
-    <%= f.label :コメント %><br>
-    <%= f.text_area :comment %>
-    <%= f.submit "コメント作成" %>
-  <% end %>
+  </div>
+
+  <div class="p-1">
+    <%= form_with model: [post, comment] do |f| %>
+      <%= f.label :コメント %><br>
+      <%= f.text_area :comment %><br>
+      <%= f.submit "コメント送信", class: "btn btn-sm btn-success" %>
+    <% end %>
+  </div>

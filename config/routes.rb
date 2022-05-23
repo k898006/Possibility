@@ -36,7 +36,7 @@ Rails.application.routes.draw do
     resources :users, only: [:index, :show, :edit, :update]
     get 'users/:id/send_off' => 'users#send_off', as: 'send_off'
     patch 'users/:id/out' => 'users#out', as: 'out'
-    resources :clubs, only: [:new, :create, :index, :show, :edit, :update, :destroy]
+    resources :clubs, only: [:create, :index, :show, :edit, :update, :destroy]
     resources :stadiums, only: [:new, :create, :index, :show, :edit, :update, :destroy]
     resources :posts, only: [:index, :show, :destroy]
   end
