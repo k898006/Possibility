@@ -1,20 +1,22 @@
-<h1>スタジアム一覧</h1>
-<p>"スタジアムのページ"より投稿の閲覧及び新規投稿が可能です</p>
-<table class="table">
-  <thead>
-    <tr>
-      <th>所有クラブ</th>
-      <th>スタジアム名</th>
-      <th></th>
-    </tr>
-  </thead>
-  <tbody>
-    <% @stadiums.each do |stadium| %>
-    <tr>
-      <td><%= stadium.club.name %></td>
-      <td><%= stadium.name %></td>
-      <td><%= link_to "スタジアムのページへ", stadium_path(stadium) %></td>
-    </tr>
-    <% end %>
-  </tbody>
-</table>
+<div class="container">
+  <h1 class="text-center">スタジアム一覧</h1>
+  <p class="text-center">"スタジアムのページ"より投稿の閲覧及び新規投稿が可能です</p>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>所有クラブ</th>
+        <th>スタジアム名</th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @stadiums.each do |stadium| %>
+      <tr>
+        <td><%= stadium.club.name %></td>
+        <td><%= stadium.name %></td>
+        <td><%= link_to "スタジアムのページへ", stadium_path(stadium) %></td>
+      </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>

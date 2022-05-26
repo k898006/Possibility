@@ -5,7 +5,9 @@ class Admin::PostsController < ApplicationController
 
   def show
     @post = Post.find(params[:id])
+    @stadium = @post.stadium
     @user = @post.user
+    @comment = Comment.new
   end
 
   def destroy

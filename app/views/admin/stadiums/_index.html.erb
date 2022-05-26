@@ -1,5 +1,5 @@
-<h1>スタジアム一覧</h1>
-<table>
+<h1>一覧</h1>
+<table class="table">
     <thead>
         <tr>
             <th>スタジアム名</th>
@@ -14,8 +14,8 @@
             <td><%= stadium.name %></td>
             <td><%= stadium.club.name %></td>
             <% if admin_signed_in? %>
-            <td><%= link_to "スタジアムの詳細", admin_stadium_path(stadium) %></td>
-            <td><%= link_to "スタジアムの編集", edit_admin_stadium_path(stadium) %></td>
+            <td><%= link_to "スタジアムのページへ", admin_stadium_path(stadium) %></td>
+            <td><%= link_to "編集", edit_admin_stadium_path(stadium) %></td>
             <% end %>
         </tr>
         <% end %>

@@ -1,7 +1,6 @@
-<h1><%= stadium.name %></h1>
+<h2><%= stadium.name %></h2>
 <p>保有クラブ：<%= stadium.club.name %></p>
 <% if admin_signed_in? %>
-<%= link_to "スタジアムの編集", edit_admin_stadium_path %>
-<%= link_to "スタジアムの詳細", admin_stadium_path(stadium) %>
-<%= link_to "スタジアムの一覧", admin_stadiums_path %>
+<%= link_to "スタジアムの編集", edit_admin_stadium_path, class: "btn btn-sm btn-success" %>
+<%= link_to "スタジアムの一覧", admin_stadiums_path, class: "btn btn-sm btn-info" %>
 <% end %>

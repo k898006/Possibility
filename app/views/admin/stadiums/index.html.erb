@@ -1,1 +1,11 @@
-<%= render 'index',stadiums: @stadiums %>
+<div class="container">
+  <div class="row" %>
+    <div class="col-md-4">
+      <%= render 'new', stadium: @stadium %>
+    </div>
+
+    <div class="col-md-8">
+      <%= render 'index',stadiums: @stadiums %>
+    </div>
+  </div>
+</div>

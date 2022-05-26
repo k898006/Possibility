@@ -1,10 +1,24 @@
-<h1><%= @stadium.name %>の編集</h1>
-<%= form_with model: @stadium, url: admin_stadium_path do |f| %>
-<%= f.label :スタジアム名 %>
-<%= f.text_field :name %><br>
-<%= f.label :保有クラブ %>
-<%= f.select :club_id, options_from_collection_for_select(Club.all, :id, :name) %><br>
-<%= f.submit "更新" %>
-<% end %>
-<%= link_to "スタジアムの詳細", admin_stadium_path(@stadium) %>
-<%= link_to "スタジアムの一覧", admin_stadiums_path %>
+<div class="container">
+  <div class="row">
+    <div class="px-auto">
+      <h1><%= @stadium.name %>の編集</h1>
+      <%= form_with model: @stadium, url: admin_stadium_path do |f| %>
+        <div class="p-1">
+          <%= f.label :スタジアム名 %>
+          <%= f.text_field :name %>
+        </div>
+        <div class="p-1">
+          <%= f.label :保有クラブ %>
+          <%= f.select :club_id, options_from_collection_for_select(Club.all, :id, :name) %>
+        </div>
+        <div class="p-1">
+          <%= f.submit "更新", class: "btn btn-sm btn-success" %>
+        </div>
+      <% end %>
+      <div class="p-1">
+        <%= link_to "スタジアムの詳細", admin_stadium_path(@stadium), class: "btn btn-sm btn-primary" %>
+        <%= link_to "スタジアムの一覧", admin_stadiums_path, class: "btn btn-sm btn-info" %>
+      </div>
+    </div>
+  </div>
+</div>

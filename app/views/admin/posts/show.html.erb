@@ -1,3 +1,18 @@
-<%= render 'public/posts/show', post: @post %>
-<%= link_to "一覧へ戻る", admin_posts_path %>
-<%= link_to "削除", admin_post_path(@post), method: :delete %>
+<div class="container">
+  <div class="row">
+    <div class="col-md-6">
+      <div>
+        <%= render 'public/posts/show', post: @post %>
+      </div>
+      <div class="p-1">
+        <%= link_to @stadium.name, admin_stadium_path(@stadium), class: "btn btn-sm btn-info" %>
+        <%= link_to "投稿の一覧へ", admin_posts_path, class: "btn btn-sm btn-primary" %>
+        <%= link_to "削除", admin_post_path(@post), method: :delete, class: "btn btn-sm btn-danger" %>
+      </div>
+    </div>
+
+    <div class="col-md-6">
+      <%= render 'admin/comments/comment', {post: @post, comment: @comment} %>
+    </div>
+  </div>
+</div>

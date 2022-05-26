@@ -1,1 +1,11 @@
-<%= render 'show', stadium: @stadium %>
+<div class="container">
+  <div class="row">
+    <div class="col-md-5">
+      <%= render 'show', stadium: @stadium %>
+    </div>
+
+    <div class="col-md-7">
+      <%= render 'public/posts/index', posts: @posts %>
+    </div>
+  </div>
+</div>

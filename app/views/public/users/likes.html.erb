@@ -1,21 +1,48 @@
-<h1>いいね一覧</h1>
-<table>
-  <thead>
-    <tr>
-      <th>ユーザー名</th>
-      <th>スタジアム</th>
-      <th>タイトル</th>
-      <th>いいね数</th>
-    </tr>
-  </thead>
-  <tbody>
-    <% @like_posts.each do |post| %>
-      <tr>
-        <td><%= post.user.name %></td>
-        <td><%= post.stadium.name %></td>
-        <td><%= link_to post.title, post_path(post) %></td>
-        <td><%= post.likes.count %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
+<div class="container">
+  <div class="row">
+    <div class="mx-auto">
+      <h1 class="text-center"><%= @user.name %></h1>
+      <div class="mx-auto p-1", style="width: 60%;">
+        <%= @user.introduction %>
+      </div>
+      <div class="text-center p-1">
+        <%= link_to "ユーザーのページへ", user_path(@user), class: "btn btn-sm btn-defaullt text-primary" %>
+        <%= link_to "ユーザー情報の編集", edit_user_path(@user),  class: "btn btn-sm btn-success" %>
+      </div>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="mx-auto pt-5">
+      <h2 class="text-center">いいね一覧</h2>
+        <table class="table">
+          <thead>
+            <tr>
+              <th>ユーザーネーム</th>
+              <th>タイトル</th>
+              <th>コメント数</th>
+              <th>いいね数</th>
+              <th></th>
+            </tr>
+          </thead>
+          <tbody>
+            <% @like_posts.each do |post| %>
+            <tr>
+              <td><%= post.user.name %></td>
+              <td><%= post.title %></td>
+              <td><%= post.comments.count %>コメント</td>
+              <td><%= post.likes.count %>いいね</td>
+              <td>
+                <%= link_to "詳細", post_path(post), class: "btn btn-sm btn-primary" %>
+                <% if post.user == current_user %>
+                  <%= link_to "編集", edit_post_path(post), class: "btn btn-sm btn-success" %>
+                  <%= link_to "削除", post_path(post), method: :delete, class: "btn btn-sm btn-danger" %>
+                <% end %>
+              </td>
+            </tr>
+            <% end %>
+          </tbody>
+        </table>
+      </div>
+  </div>
+</div>

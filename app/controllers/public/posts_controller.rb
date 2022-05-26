@@ -3,38 +3,16 @@ class Public::PostsController < ApplicationController
   before_action :correct_user, only: [:edit, :update]
 
 
-  #def new
-    #@post = Post.new
-    #@clubs = Club.all
-  #end
-
-  #def create
-    #@post = Post.new(post_params)
-    #@post.user_id = current_user.id
-    #if params[:post][:club_confirmed].present? && params[:post][:club_confirmed] == "true"
-      #@stadium = Stadium.find(params[:post][:stadium_id])
-      #@post.stadium_id = @stadium.id
-      #if @post.save
-        #redirect_to posts_path
-      #else
-      #render :new
-      #end
-    #else
-      #@stadiums = Stadium.where(club_id: params[:post][:club_id])
-    #end
-  #end
-
-    def create
-      @stadium = Stadium.find(params[:post][:stadium_id])
-      @post = Post.new(post_params)
-      @post.stadium_id = @stadium.id
-      @post.user_id = current_user.id
-    　if @post.save
-        redirect_to stadium_path(@stadium)
-      else
-        redirect_to request.referer
-      end
+  def create
+    @stadium = Stadium.find(params[:post][:stadium_id])
+    @post = Post.new(post_params)
+    @post.user_id = current_user.id
+    if @post.save
+      redirect_to stadium_path(@stadium)
+    else
+      redirect_to stadium_path(@stadium)
     end
+  end
 
   def index
     @posts = Post.all
@@ -43,11 +21,13 @@ class Public::PostsController < ApplicationController
   def show
     @post = Post.find(params[:id])
     @user = @post.user
+    @stadium = @post.stadium
     @comment = Comment.new
   end
 
   def edit
     @post = Post.find(params[:id])
+    @stadium = @post.stadium
   end
 
   def update
@@ -68,13 +48,21 @@ class Public::PostsController < ApplicationController
 
   def destroy
     @post = Post.find(params[:id])
+    @stadium = @post.stadium
     @post.destroy
-    redirect_to posts_path
+    redirect_to stadium_path(@stadium)
   end
 
+  #def search
+    #@stadium = Stadium.find(params[:stadium_id])
+    #@results = @q.result
+  #end
+
   private
-  def post_params
-    params.require(:post).permit(:stadium_id, :title, :caption, images: [ ])
+
+  def set_q
+    @stadium = Stadium.find(params[:stadium_id])
+    @q = @stadium.posts.ransack(params[:q])
   end
 
   def correct_user
@@ -82,4 +70,9 @@ class Public::PostsController < ApplicationController
     @user = @post.user
     redirect_to(posts_path) unless @user == current_user
   end
+
+  def post_params
+    params.require(:post).permit(:stadium_id, :title, :caption, images: [ ])
+  end
+
 end

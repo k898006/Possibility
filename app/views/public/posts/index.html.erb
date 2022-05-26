@@ -1,1 +1,5 @@
-<%= render 'index', posts: @posts %>
+<% if @search_products %>
+  <%= render 'index', posts: @search_products %>
+<% else %>
+  <%= render 'index', posts: @posts %>
+<% end %>

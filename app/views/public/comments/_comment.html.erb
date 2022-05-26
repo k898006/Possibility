@@ -2,21 +2,41 @@
   <div class="p-1">
     <p>コメント数：<%= post.comments.count %>件</p>
     <% post.comments.each do |comment| %>
-      <section class="p-1">
+      <div class="p-1">
+        <% if comment.images.attached? %>
+          <section class="d-flex px-1">
+          <% comment.images.each do |image| %>
+            <%= image_tag image, width: 150, height: 200 %>
+          <% end %>
+          </section>
+        <% else %>
+        <% end %>
+      </div>
+      <div class="p-1">
         <%= comment.user.name %>
         <%= comment.comment %>
         <%= comment.created_at.strftime('%Y/%m/%d') %>
         <% if comment.user == current_user %>
           <%= link_to "削除", post_comment_path(comment.post, comment), method: :delete %>
-          <% end %>
-      </section>
+        <% end %>
+      </div>
     <% end %>
   </div>
 
+  <% unless current_user.email == "guest@example.com" %>
   <div class="p-1">
     <%= form_with model: [post, comment] do |f| %>
+    <div class="p-1">
+      <%= f.label :画像 %>
+      <%= f.file_field :images, multiple: true %>
+    </div>
+    <div class="p-1">
       <%= f.label :コメント %><br>
-      <%= f.text_area :comment %><br>
+      <%= f.text_area :comment %>
+    </div>
+    <div class="p-1">
       <%= f.submit "コメント送信", class: "btn btn-sm btn-success" %>
     <% end %>
+    </div>
   </div>
+  <% end %>

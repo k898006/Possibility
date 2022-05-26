@@ -22,8 +22,7 @@
       </td>
       <% if admin_signed_in? %>
       <td>
-        <%= link_to "クラブの詳細", admin_club_path(club) %>
-        <%= link_to "クラブの編集", edit_admin_club_path(club) %>
+        <%= link_to "編集", edit_admin_club_path(club), class: "btn btn-sm btn-success" %>
       </td>
       <% end %>
     </tr>

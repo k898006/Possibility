@@ -1,6 +1,6 @@
-<h2 class="text-center"><%= post.title %></h2>
+<h2><%= post.title %></h2>
 
-<div class>
+<div class="p-1">
 <% if post.images.attached? %>
   <% post.images.each do |image| %>
     <section class="d-flex px-1">
@@ -13,18 +13,21 @@
 </div>
 
 <div class="p-1">
-<% if user_signed_in? %>
-  <%= link_to user_path(@user) do %>
-    <%= post.user.name %>
-  <% end %>
-<% elsif admin_signed_in? %>
-<%= link_to admin_user_path(@user) do %>
-    <%= post.user.name %>
-  <% end %>
-<% end %>
+  <p>
+    ユーザーネーム：
+    <% if user_signed_in? %>
+      <%= link_to user_path(@user) do %>
+        <%= post.user.name %>
+      <% end %>
+    <% elsif admin_signed_in? %>
+    <%= link_to admin_user_path(@user) do %>
+        <%= post.user.name %>
+      <% end %>
+    <% end %>
+  </p>
 </div>
 
-<div class="border class="p-1"">
+<div class="border p-1">
   <%= post.caption %>
 </div>
 

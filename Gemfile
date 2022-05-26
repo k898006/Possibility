@@ -66,3 +66,5 @@ end
 gem 'enum_help'
 
 gem 'jquery-rails'
+
+gem 'ransack'

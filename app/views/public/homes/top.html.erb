@@ -1,2 +1,29 @@
-<h1>Homes#top</h1>
-<p>Find me in app/views/homes/top.html.erb</p>
+<div class="container">
+  <div class="row">
+    <div class="col-md-8">
+      <%= image_tag 'top.jpeg' %>
+    </div>
+
+    <div class="col-md-4">
+      <% if user_signed_in? %>
+        <div class="p-1">
+          <%= link_to "マイページへ", user_path(current_user), class: "btn btn-lg btn-primary w-50" %>
+        </div>
+        <div class="p-1">
+          <%= link_to "スタジアム一覧へ", stadiums_path, class: "btn btn-lg btn-info w-50" %>
+        </div>
+      <% else %>
+        <div class="p-1">
+          <%= link_to "新規登録", new_user_registration_path, class: "btn btn-lg btn-primary w-50" %>
+        </div>
+        <div class="p-1">
+          <%= link_to "ログイン", new_user_session_path, class: "btn btn-lg btn-info w-50" %>
+        </div>
+        <div class="p-1">
+          <%= link_to "ゲストとしてログイン", users_guest_sign_in_path, method: :post, class: "btn btn-lg btn-success w-50" %>（閲覧のみ）
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>
+

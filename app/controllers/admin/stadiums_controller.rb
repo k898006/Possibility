@@ -1,25 +1,26 @@
 class Admin::StadiumsController < ApplicationController
-  def new
-    @stadium = Stadium.new
-  end
+
 
   def create
     @stadium = Stadium.new(stadium_params)
     @club = Club.find(params[:stadium][:club_id])
     @stadium.club_id = @club.id
     if @stadium.save
-      redirect_to admin_stadium_path(@stadium)
+      redirect_to admin_stadiums_path
     else
-      render :new
+      @stadiums = Stadium.all
+      render :index
     end
   end
 
   def index
     @stadiums = Stadium.all
+    @stadium = Stadium.new
   end
 
   def show
     @stadium = Stadium.find(params[:id])
+    @posts = @stadium.posts
   end
 
   def edit
@@ -37,6 +38,6 @@ class Admin::StadiumsController < ApplicationController
 
   private
   def stadium_params
-    params.require(:stadium).permit(:name)
+    params.require(:stadium).permit(:name, :club_id)
   end
 end
