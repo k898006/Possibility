@@ -14,13 +14,14 @@ class Admin::StadiumsController < ApplicationController
   end
 
   def index
-    @stadiums = Stadium.all
+    @q = Stadium.ransack(params[:q])
+    @stadiums = @q.result.page(params[:page])
     @stadium = Stadium.new
   end
 
   def show
     @stadium = Stadium.find(params[:id])
-    @posts = @stadium.posts
+    @posts = @stadium.posts.page(params[:page])
   end
 
   def edit

@@ -25,6 +25,7 @@
           <td><%= link_to "スタジアムのページへ", stadium_path(stadium) %></td>
         </tr>
         <% end %>
+        <%= paginate @stadiums %>
       </tbody>
     </table>
   </div>

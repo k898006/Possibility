@@ -1,6 +1,11 @@
-
-
 <h1>クラブ一覧</h1>
+<div class="p-1">
+  <%= search_form_for @q, url: admin_clubs_path do |f| %>
+    <%= f.label :name_cont, 'クラブ名' %>
+    <%= f.search_field :name_cont %>
+    <%= f.submit '検索' %>　<%= link_to "一覧で表示", admin_clubs_path %>
+  <% end %>
+</div>
 <table class="table">
   <thead>
     <tr>
@@ -27,5 +32,6 @@
       <% end %>
     </tr>
     <% end %>
+    <%= paginate clubs %>
   </tbody>
 </table>

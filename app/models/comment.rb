@@ -4,6 +4,6 @@ class Comment < ApplicationRecord
 
   validates :comment, presence: true
 
-  has_many_attached :images
+  has_one_attached :image
 
 end

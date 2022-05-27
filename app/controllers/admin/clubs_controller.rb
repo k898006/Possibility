@@ -3,7 +3,7 @@ class Admin::ClubsController < ApplicationController
   def create
     @club = Club.new(club_params)
     if @club.save
-      redirect_to admin_clubs
+      redirect_to admin_clubs_path
     else
       @clubs = Club.all
       render :index
@@ -12,7 +12,8 @@ class Admin::ClubsController < ApplicationController
 
   def index
     @club = Club.new
-    @clubs = Club.all
+    @q = Club.ransack(params[:q])
+    @clubs = @q.result.page(params[:page])
   end
 
   def edit

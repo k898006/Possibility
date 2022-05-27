@@ -12,13 +12,9 @@ class Public::PostsController < ApplicationController
       redirect_to stadium_path(@stadium)
     else
       @q = @stadium.posts.ransack(params[:q])
-      @posts = @q.result
+      @posts = @q.result.page(params[:page])
       render template:  "public/stadiums/show"
     end
-  end
-
-  def index
-    @posts = Post.all
   end
 
   def show
@@ -45,7 +41,9 @@ class Public::PostsController < ApplicationController
     if @post.update(post_params)
       redirect_to post_path(@post)
     else
-      @stadium = @post.stadium
+      @post.images.each do |image|
+        image.purge
+      end
       render :edit
     end
   end
@@ -59,10 +57,6 @@ class Public::PostsController < ApplicationController
 
   private
 
-  def set_q
-    @stadium = Stadium.find(params[:stadium_id])
-    @q = @stadium.posts.ransack(params[:q])
-  end
 
   def correct_user
     @post = Post.find(params[:id])
@@ -71,7 +65,7 @@ class Public::PostsController < ApplicationController
   end
 
   def post_params
-    params.require(:post).permit(:stadium_id, :title, :caption, images: [ ])
+    params.require(:post).permit(:stadium_id, :title, :caption, images: [])
   end
 
 end

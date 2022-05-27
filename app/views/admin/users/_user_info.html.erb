@@ -1,10 +1,14 @@
-<h3><%= user.name %></h3>
-<%= user.introduction %>
-<p class="text-danger">
+<h1 class="text-center"><%= user.name %></h1>
+<div class="mx-auto p-1", style="width: 60%;">
+  <%= user.introduction %>
+</div>
+<p class="text-center text-danger">
   <% if user.is_valid  %>
   <% else %>
     退場
   <% end %>
 </p>
-<%= link_to "編集", edit_admin_user_path(user), class: "btn btn-sm btn-success" %>
-<%= link_to "ユーザーの強制退会", admin_send_off_path(user) , class: "btn btn-sm btn-danger" %>
+<div class="text-center">
+  <%= link_to "編集", edit_admin_user_path(user), class: "btn btn-sm btn-success" %>
+  <%= link_to "ユーザーの強制退会", admin_send_off_path(user) , class: "btn btn-sm btn-danger" %>
+</div>

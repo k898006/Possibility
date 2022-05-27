@@ -11,8 +11,16 @@ ja:
       post:
         title: タイトル
         caption: 詳細
+        images: 画像
       club:
         name: クラブ名
         division: 所属リーグ
       stadium:
         name: スタジアム名
+  views:
+    pagination:
+      first: 最初
+      last: 最後
+      previous: 前
+      next: 次
+      truncate: ...

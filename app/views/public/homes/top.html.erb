@@ -4,20 +4,20 @@
       <div class="pt-5">
         <% if user_signed_in? %>
           <div class="p-1">
-            <%= link_to "マイページへ", user_path(current_user), class: "btn btn-lg btn-primary w-75" %>
+            <%= link_to "マイページへ", user_path(current_user), class: "btn btn-lg btn-primary w-25" %>
           </div>
           <div class="p-1">
-            <%= link_to "スタジアム一覧へ", stadiums_path, class: "btn btn-lg btn-info w-75" %>
+            <%= link_to "スタジアム一覧へ", stadiums_path, class: "btn btn-lg btn-info w-25" %>
           </div>
         <% else %>
           <div class="p-1">
-            <%= link_to "新規登録", new_user_registration_path, class: "btn btn-lg btn-primary w-75" %>
+            <%= link_to "新規登録", new_user_registration_path, class: "btn btn-lg btn-primary w-25" %>
           </div>
           <div class="p-1">
-            <%= link_to "ログイン", new_user_session_path, class: "btn btn-lg btn-info w-75" %>
+            <%= link_to "ログイン", new_user_session_path, class: "btn btn-lg btn-info w-25" %>
           </div>
           <div class="p-1">
-            <%= link_to "ゲストログイン（閲覧のみ）", users_guest_sign_in_path, method: :post, class: "btn btn-lg btn-success w-75" %>
+            <%= link_to "ゲストログイン（閲覧のみ）", users_guest_sign_in_path, method: :post, class: "btn btn-lg btn-success w-25" %>
           </div>
         <% end %>
       </div>

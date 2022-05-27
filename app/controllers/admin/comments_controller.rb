@@ -2,7 +2,7 @@ class Admin::CommentsController < ApplicationController
 
   def index
     @q = Comment.ransack(params[:q])
-    @comments = @q.result
+    @comments = @q.result.page(params[:page])
   end
 
   def create

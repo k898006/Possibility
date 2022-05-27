@@ -7,7 +7,11 @@ class Public::CommentsController < ApplicationController
     if comment.save
       redirect_to post_path(post)
     else
-      render :show
+      @post = post
+      @user = post.user
+      @stadium = post.stadium
+      @comment = comment
+      render template: 'public/posts/show'
     end
   end
 
@@ -19,6 +23,6 @@ class Public::CommentsController < ApplicationController
 
   private
   def comment_params
-    params.require(:comment).permit(:comment, images: [ ])
+    params.require(:comment).permit(:comment, :image)
   end
 end

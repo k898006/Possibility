@@ -3,13 +3,8 @@
     <p>コメント数：<%= post.comments.count %>件</p>
     <% post.comments.each do |comment| %>
       <div class="p-1">
-        <% if comment.images.attached? %>
-          <section class="d-flex px-1">
-          <% comment.images.each do |image| %>
-            <%= image_tag image, width: 150, height: 200 %>
-          <% end %>
-          </section>
-        <% else %>
+        <% if comment.image.attached? %>
+          <%= image_tag comment.image, width: 150, height: 200 %>
         <% end %>
       </div>
       <div class="p-1">

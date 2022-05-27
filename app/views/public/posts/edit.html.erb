@@ -13,14 +13,14 @@
       <div class="p-1">
       <% if @post.images.attached? %>
         <p>選択済みの画像（削除する画像にチェックをつけてください）</p>
-        <% @post.images.each do |image| %>
-        <div>
-          <%= f.check_box :image_ids, {multiple: true }, image.id, false %>
-          <label for="post_images_ids_<%= image.id %>" >
-            <%= image_tag image, size: '100x100' %>
-          </label>
+        <div class="d-flex px-1">
+          <% @post.images.each do |image| %>
+            <%= f.check_box :image_ids, {multiple: true }, image.id, false %>
+            <label for="post_images_ids_<%= image.id %>" >
+              <%= image_tag image, size: '100x100' %>
+            </label>
+          <% end %>
         </div>
-        <% end %>
       <% end %>
       </div>
       <div class="p-1">
@@ -41,7 +41,7 @@
       </div>
       <div class="p-1">
         <%= link_to "戻る", post_path(@post), class: "btn btn-sm btn-primary" %>
-        <%= link_to @stadium.name, stadium_path(@stadium), class: "btn btn-sm btn-info" %>
+        <%= link_to @post.stadium.name, stadium_path(@post.stadium), class: "btn btn-sm btn-info" %>
         <%= link_to "削除", post_path(@post), method: :delete, class: "btn btn-sm btn-danger" %>
       </div>
     </div>

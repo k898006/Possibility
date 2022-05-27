@@ -2,9 +2,10 @@ class Post < ApplicationRecord
 
   validates :title, presence: true
   validates :caption, presence: true
-  #validate :images_length
+
 
   has_many_attached :images
+  validate :images_length
 
   #def get_image
     #unless images.attached?
@@ -23,11 +24,10 @@ class Post < ApplicationRecord
   end
 
   private
-  #def images_length
-    #if images.length > 4
-      #images.purge
-      #errors.add(:images, "は4枚以内に")
-    #end
-  #end
+  def images_length
+    if images.length > 3
+      errors.add(:images, "は3枚以内にしてください")
+    end
+  end
 
 end

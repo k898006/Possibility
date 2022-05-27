@@ -2,7 +2,7 @@
   <div class="row">
     <div class="col-md-6">
       <div>
-        <%= render 'show', post: @post %>
+        <%= render 'public/posts/show', post: @post %>
       </div>
       <div id="like_button_<%= @post.id %>" class="p-1">
         <%= render 'public/likes/like', post: @post %>

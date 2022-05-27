@@ -8,14 +8,15 @@ class Public::UsersController < ApplicationController
     if @user.id == 4
       redirect_to stadiums_path
     else
-      @posts = @user.posts
+      @posts = @user.posts.page(params[:page])
     end
   end
 
   def edit
     @user = User.find(params[:id])
     if @user == current_user
-    else redirect_to user_path(@user)
+    else
+      redirect_to user_path(@user)
     end
   end
 

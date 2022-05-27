@@ -20,22 +20,25 @@
         <table class="table">
           <thead>
             <tr>
-              <th>ユーザーネーム</th>
+              <th>ユーザー</th>
+              <th>画像枚数</th>
               <th>タイトル</th>
               <th>コメント数</th>
               <th>いいね数</th>
+              <th>投稿日時</th>
               <th></th>
             </tr>
           </thead>
           <tbody>
             <% @like_posts.each do |post| %>
             <tr>
-              <td><%= post.user.name %></td>
-              <td><%= post.title %></td>
+              <td><%= link_to post.user.name, user_path(post.user) %></td>
+              <td><%= post.images.count %>枚</td>
+              <td><%= link_to post.title, post_path(post) %></td>
               <td><%= post.comments.count %>コメント</td>
               <td><%= post.likes.count %>いいね</td>
+              <td><%= post.created_at.strftime('%Y/%-m/%-d %H:%M') %></td>
               <td>
-                <%= link_to "詳細", post_path(post), class: "btn btn-sm btn-primary" %>
                 <% if post.user == current_user %>
                   <%= link_to "編集", edit_post_path(post), class: "btn btn-sm btn-success" %>
                   <%= link_to "削除", post_path(post), method: :delete, class: "btn btn-sm btn-danger" %>
