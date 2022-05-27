@@ -1,30 +1,26 @@
-<div class="container">
-  <div class="row">
-    <div class="col-md-7">
-      <div>
-        <%= image_tag 'top.jpeg', style: 'width:100%; height:auto;' %>
+
+    <div class="text-center">
+      <a href="/"><%= image_tag 'top_icon.jpg', style: 'width:50%; height:auto;' %></a>
+      <div class="pt-5">
+        <% if user_signed_in? %>
+          <div class="p-1">
+            <%= link_to "マイページへ", user_path(current_user), class: "btn btn-lg btn-primary w-75" %>
+          </div>
+          <div class="p-1">
+            <%= link_to "スタジアム一覧へ", stadiums_path, class: "btn btn-lg btn-info w-75" %>
+          </div>
+        <% else %>
+          <div class="p-1">
+            <%= link_to "新規登録", new_user_registration_path, class: "btn btn-lg btn-primary w-75" %>
+          </div>
+          <div class="p-1">
+            <%= link_to "ログイン", new_user_session_path, class: "btn btn-lg btn-info w-75" %>
+          </div>
+          <div class="p-1">
+            <%= link_to "ゲストログイン（閲覧のみ）", users_guest_sign_in_path, method: :post, class: "btn btn-lg btn-success w-75" %>
+          </div>
+        <% end %>
       </div>
     </div>
-    <div class="col-md-5 bg-dark">
-      <% if user_signed_in? %>
-        <div class="p-1">
-          <%= link_to "マイページへ", user_path(current_user), class: "btn btn-lg btn-primary w-100" %>
-        </div>
-        <div class="p-1">
-          <%= link_to "スタジアム一覧へ", stadiums_path, class: "btn btn-lg btn-info w-100" %>
-        </div>
-      <% else %>
-        <div class="p-1">
-          <%= link_to "新規登録", new_user_registration_path, class: "btn btn-lg btn-primary w-100" %>
-        </div>
-        <div class="p-1">
-          <%= link_to "ログイン", new_user_session_path, class: "btn btn-lg btn-info w-100" %>
-        </div>
-        <div class="p-1">
-          <%= link_to "ゲストログイン（閲覧のみ）", users_guest_sign_in_path, method: :post, class: "btn btn-lg btn-success w-100" %>
-        </div>
-      <% end %>
-    </div>
-  </div>
-</div>
+
 

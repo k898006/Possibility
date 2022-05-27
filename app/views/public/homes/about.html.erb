@@ -1,13 +1,13 @@
 <div class="container">
-  <h1>楽楽スタジアムとは</h1>
   <div class="row">
-    <div class="p-1">
+    <div class="mx-auto p-1 text-center">
+      <h1>楽楽スタジアムとは</h1><br>
       <p>
         Jリーグに所属する全クラブのスタジアムの情報を<strong>楽に</strong>手に入れ<br>
         よりスタジアムでの観戦を<strong>楽しむ</strong>ことをコンセプトにしたサイトです。
       </p>
     </div>
-    <div class="p-1">
+    <div class="mx-auto p-1 text-center">
       <p>
         ログイン後、スタジアムの一覧から気になるスタジアムのページへアクセスし、情報を手に入れましょう！<br>
         スタジアムについて気に入ったこと・共有したいことがあれば、各スタジアムのページから投稿が可能です！
@@ -15,7 +15,7 @@
     </div>
   </div>
 
-  <div>
+  <div class="mx-auto text-center">
     <% if user_signed_in? %>
       <div class="p-1">
         <%= link_to "マイページへ", user_path(current_user), class: "btn btn-lg btn-primary w-50" %>
@@ -31,7 +31,7 @@
       <%= link_to "ログイン", new_user_session_path, class: "btn btn-lg btn-info w-50" %>
     </div>
     <div class="p-1">
-      <%= link_to "ゲストとしてログイン", users_guest_sign_in_path , method: :post, class: "btn btn-lg btn-success w-50" %>（閲覧のみ）
+      <%= link_to "ゲストとしてログイン（閲覧のみ）", users_guest_sign_in_path , method: :post, class: "btn btn-lg btn-success w-50" %>
     </div>
     <% end %>
   </div>
