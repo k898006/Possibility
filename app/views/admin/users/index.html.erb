@@ -1,21 +1,35 @@
-<h1>ユーザー一覧</h1>
-<table>
-  <thead>
-    <tr>
-      <th>ユーザーID</th>
-      <th>ユーザーネーム</th>
-    </tr>
-  </thead>
-  <tbody>
-    <% @users.each do |user| %>
-      <tr>
-        <td><%= user.id %></td>
-        <td>
-          <%= link_to admin_user_path(user) do %>
-          <%= user.name %>
+<div class="container">
+  <div class="row">
+    <div class="p-3 mx-auto">
+      <h1>ユーザー一覧</h1>
+      <table class="table">
+        <thead>
+          <tr>
+            <th>ユーザーID</th>
+            <th>ユーザーネーム</th>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody>
+          <% @users.each do |user| %>
+            <tr>
+              <td><%= user.id %></td>
+              <td>
+                <%= link_to admin_user_path(user) do %>
+                <%= user.name %>
+                <% end %>
+              </td>
+              <td class="text-danger">
+                <% if user.is_valid  %>
+                <% else %>
+                  退場
+                <% end %>
+              </td>
+            </tr>
           <% end %>
-        </td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+

@@ -1,16 +1,33 @@
-<h3>ユーザー情報の編集</h3>
-<%= form_with model: @user do |f| %>
-  <div>
-    <%= f.label :ユーザーネーム %><br>
-    <%= f.text_field :name %>
+<div class="container">
+  <div class="row">
+    <div class="mx-auto">
+      <h3>ユーザー情報の編集</h3>
+      <div>
+        <%= render 'layouts/error_messages', model: @user %>
+      </div>
+      <div>
+        <%= form_with model: @user, url: admin_user_path do |f| %>
+          <div class="p-1">
+            <%= f.label :ユーザーネーム %><br>
+            <%= f.text_field :name %>
+          </div>
+          <div class="p-1">
+            <%= f.label :自己紹介 %><br>
+            <%= f.text_area :introduction %>
+          </div>
+          <div class="p-1">
+            <%= f.select :is_valid, [['有効', true], ['退場', false]] %>
+          </div>
+          <div class="p-1">
+            <%= f.submit "変更を保存", class: "btn btn-sm btn-success" %>
+          </div>
+        <% end %>
+      </div>
+      <div class="p-1">
+        <%= link_to "戻る", admin_user_path(@user), class: "btn btn-sm btn-primary" %>
+      </div>
+    </div>
   </div>
-  <div>
-    <%= f.label :自己紹介 %><br>
-    <%= f.text_area :introduction %>
-  </div>
-  <div>
-    <%= f.submit "変更を保存" %>
-  </div>
-<% end %>
+</div>
 
 

@@ -1,3 +1,12 @@
-<%= @user.name %>の強制退会
-<%= link_to "退会させる", admin_out_path(@user), method: :patch, data: { confirm: "本当に退会させますか？"} %>
-<%= link_to "退会させない", admin_user_path(@user) %>
+<div class="container">
+  <div class="row">
+    <div class="mx-auto">
+      <h3><%= @user.name %>の強制退会</h3>
+      <div class="p-1 text-center">
+        <%= link_to "退会させる", admin_out_path(@user), method: :patch, data: { confirm: "本当に退会させますか？"}, class: "btn btn-sm btn-danger" %>
+        <%= link_to "退会させない", admin_user_path(@user), class: "btn btn-sm btn-primary" %>
+      </div>
+    </div>
+  </div>
+</div>
+
