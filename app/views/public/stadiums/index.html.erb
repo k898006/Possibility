@@ -1,22 +1,31 @@
-<div class="container">
+<div class="container px-5 px-sm-0">
   <h1 class="text-center">スタジアム一覧</h1>
   <p class="text-center">"スタジアムのページ"より投稿の閲覧及び新規投稿が可能です</p>
-  <table class="table">
-    <thead>
-      <tr>
-        <th>所有クラブ</th>
-        <th>スタジアム名</th>
-        <th></th>
-      </tr>
-    </thead>
-    <tbody>
-      <% @stadiums.each do |stadium| %>
-      <tr>
-        <td><%= stadium.club.name %></td>
-        <td><%= stadium.name %></td>
-        <td><%= link_to "スタジアムのページへ", stadium_path(stadium) %></td>
-      </tr>
-      <% end %>
-    </tbody>
-  </table>
+  <div class="p-1 text-center">
+    <%= search_form_for @q, url: stadiums_path do |f| %>
+    <%= f.search_field :name_cont, placeholder: "スタジアム名を入力" %>
+    <%= f.submit '検索' %>　<%= link_to "スタジアム一覧を表示", stadiums_path %>
+  <% end %>
+
+  </div>
+  <div class="p-1">
+    <table class="table">
+      <thead>
+        <tr>
+          <th>所有クラブ</th>
+          <th>スタジアム名</th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @stadiums.each do |stadium| %>
+        <tr>
+          <td><%= stadium.club.name %></td>
+          <td><%= stadium.name %></td>
+          <td><%= link_to "スタジアムのページへ", stadium_path(stadium) %></td>
+        </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
 </div>

@@ -1,7 +1,8 @@
 class Admin::CommentsController < ApplicationController
 
   def index
-    @comments = Comment.all
+    @q = Comment.ransack(params[:q])
+    @comments = @q.result
   end
 
   def create
@@ -18,8 +19,9 @@ class Admin::CommentsController < ApplicationController
 
   def destroy
     comment = Comment.find(params[:id])
+    post = comment.post
     comment.destroy
-    redirect_to admin_posts_path
+    redirect_to admin_post_path(post)
   end
 
   private

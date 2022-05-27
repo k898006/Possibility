@@ -9,8 +9,6 @@
 <%= f.select :club_id, options_from_collection_for_select(Club.all, :id, :name) %>
 </div>
 <div class="p-1">
-<%= f.submit "作成" %>
+<%= f.submit "作成", class: "btn btn-sm btn-success" %>
 <% end %>
 </div>
-
-<%= link_to "スタジアム一覧", admin_stadiums_path, class: "btn btn-sm btn-info" %>

@@ -11,12 +11,9 @@
     <tbody>
         <% stadiums.each do |stadium| %>
         <tr>
-            <td><%= stadium.name %></td>
+            <td><%= link_to stadium.name, admin_stadium_path(stadium) %></td>
             <td><%= stadium.club.name %></td>
-            <% if admin_signed_in? %>
-            <td><%= link_to "スタジアムのページへ", admin_stadium_path(stadium) %></td>
-            <td><%= link_to "編集", edit_admin_stadium_path(stadium) %></td>
-            <% end %>
+            <td><%= link_to "編集", edit_admin_stadium_path(stadium), class: "btn btn-sm btn-success" %></td>
         </tr>
         <% end %>
     </tbody>

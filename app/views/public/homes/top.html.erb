@@ -1,26 +1,27 @@
 <div class="container">
   <div class="row">
-    <div class="col-md-8">
-      <%= image_tag 'top.jpeg' %>
+    <div class="col-md-7">
+      <div>
+        <%= image_tag 'top.jpeg', style: 'width:100%; height:auto;' %>
+      </div>
     </div>
-
-    <div class="col-md-4">
+    <div class="col-md-5 bg-dark">
       <% if user_signed_in? %>
         <div class="p-1">
-          <%= link_to "マイページへ", user_path(current_user), class: "btn btn-lg btn-primary w-50" %>
+          <%= link_to "マイページへ", user_path(current_user), class: "btn btn-lg btn-primary w-100" %>
         </div>
         <div class="p-1">
-          <%= link_to "スタジアム一覧へ", stadiums_path, class: "btn btn-lg btn-info w-50" %>
+          <%= link_to "スタジアム一覧へ", stadiums_path, class: "btn btn-lg btn-info w-100" %>
         </div>
       <% else %>
         <div class="p-1">
-          <%= link_to "新規登録", new_user_registration_path, class: "btn btn-lg btn-primary w-50" %>
+          <%= link_to "新規登録", new_user_registration_path, class: "btn btn-lg btn-primary w-100" %>
         </div>
         <div class="p-1">
-          <%= link_to "ログイン", new_user_session_path, class: "btn btn-lg btn-info w-50" %>
+          <%= link_to "ログイン", new_user_session_path, class: "btn btn-lg btn-info w-100" %>
         </div>
         <div class="p-1">
-          <%= link_to "ゲストとしてログイン", users_guest_sign_in_path, method: :post, class: "btn btn-lg btn-success w-50" %>（閲覧のみ）
+          <%= link_to "ゲストログイン（閲覧のみ）", users_guest_sign_in_path, method: :post, class: "btn btn-lg btn-success w-100" %>
         </div>
       <% end %>
     </div>

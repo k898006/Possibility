@@ -2,6 +2,9 @@
   <div class="row">
     <div class="mx-auto">
       <h1>編集</h1>
+      <div>
+        <%= render 'layouts/error_messages', model: @post %>
+      </div>
       <%= form_with model: @post do |f| %>
       <div class="p-1">
         <%= f.label :スタジアム %>

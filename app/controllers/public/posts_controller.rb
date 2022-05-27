@@ -7,10 +7,13 @@ class Public::PostsController < ApplicationController
     @stadium = Stadium.find(params[:post][:stadium_id])
     @post = Post.new(post_params)
     @post.user_id = current_user.id
+    @post.stadium_id = @stadium.id
     if @post.save
       redirect_to stadium_path(@stadium)
     else
-      redirect_to stadium_path(@stadium)
+      @q = @stadium.posts.ransack(params[:q])
+      @posts = @q.result
+      render template:  "public/stadiums/show"
     end
   end
 
@@ -42,6 +45,7 @@ class Public::PostsController < ApplicationController
     if @post.update(post_params)
       redirect_to post_path(@post)
     else
+      @stadium = @post.stadium
       render :edit
     end
   end
@@ -53,11 +57,6 @@ class Public::PostsController < ApplicationController
     redirect_to stadium_path(@stadium)
   end
 
-  #def search
-    #@stadium = Stadium.find(params[:stadium_id])
-    #@results = @q.result
-  #end
-
   private
 
   def set_q
@@ -68,7 +67,7 @@ class Public::PostsController < ApplicationController
   def correct_user
     @post = Post.find(params[:id])
     @user = @post.user
-    redirect_to(posts_path) unless @user == current_user
+    redirect_to post_path(@post) unless @user == current_user
   end
 
   def post_params

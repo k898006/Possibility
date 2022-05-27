@@ -13,22 +13,30 @@
     </thead>
     <tbody>
       <% posts.each do |post| %>
-      <tr>
-        <td><%= link_to post.user.name, user_path(post.user) %></td>
-        <td><%= link_to post.title, post_path(post) %></td>
-        <td><%= post.comments.count %>コメント</td>
-        <td><%= post.likes.count %>いいね</td>
-        <td><%= post.created_at.strftime('%Y/%-m/%-d %H:%M') %></td>
-        <td>
-          <% if post.user == current_user %>
-            <%= link_to "編集", edit_post_path(post), class: "btn btn-sm btn-success" %>
-            <%= link_to "削除", post_path(post), method: :delete, class: "btn btn-sm btn-danger" %>
-          <% elsif admin_signed_in? %>
-            <%= link_to "詳細", admin_post_path(post), class: "btn btn-sm btn-primary" %>
-            <%= link_to "削除", admin_post_path(post), method: :delete, class: "btn btn-sm btn-danger" %>
-          <% end %>
-        </td>
-      </tr>
+        <% if admin_signed_in? %>
+          <tr>
+            <td><%= link_to post.user.name, admin_user_path(post.user) %></td>
+            <td><%= link_to post.title, admin_post_path(post) %></td>
+            <td><%= post.comments.count %>コメント</td>
+            <td><%= post.likes.count %>いいね</td>
+            <td><%= post.created_at.strftime('%Y/%-m/%-d %H:%M') %></td>
+            <td><%= link_to "削除", admin_post_path(post), method: :delete, class: "btn btn-sm btn-danger" %></td>
+          </tr>
+        <% else %>
+          <tr>
+            <td><%= link_to post.user.name, user_path(post.user) %></td>
+            <td><%= link_to post.title, post_path(post) %></td>
+            <td><%= post.comments.count %>コメント</td>
+            <td><%= post.likes.count %>いいね</td>
+            <td><%= post.created_at.strftime('%Y/%-m/%-d %H:%M') %></td>
+            <td>
+              <% if post.user == current_user %>
+                <%= link_to "編集", edit_post_path(post), class: "btn btn-sm btn-success" %>
+                <%= link_to "削除", post_path(post), method: :delete, class: "btn btn-sm btn-danger" %>
+              <% end %>
+            </td>
+          </tr>
+        <% end %>
       <% end %>
     </tbody>
   </table>
