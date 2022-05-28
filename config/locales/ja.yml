@@ -1,0 +1,28 @@
+ja:
+  enums:
+    club:
+      division:
+        choose_one: "選択してください"
+        division_1: "J1"
+        division_2: "J2"
+        division_3: "J3"
+  activerecord:
+    attributes:
+      post:
+        title: タイトル
+        caption: 詳細
+        images: 画像
+      comment:
+        comment: コメント
+      club:
+        name: クラブ名
+        division: 所属リーグ
+      stadium:
+        name: スタジアム名
+  views:
+    pagination:
+      first: 最初
+      last: 最後
+      previous: 前
+      next: 次
+      truncate: ...

@@ -1,0 +1,28 @@
+<h2><%= post.title %></h2>
+
+<div class="p-1">
+<% if post.image.attached? %>
+  <%= image_tag post.image, width: 200, height: 300 %>
+<% else %>
+<% end %>
+</div>
+
+<div class="p-1">
+  <p>
+    ユーザーネーム：
+    <% if user_signed_in? %>
+      <%= link_to user_path(@user) do %>
+        <%= post.user.name %>
+      <% end %>
+    <% elsif admin_signed_in? %>
+    <%= link_to admin_user_path(@user) do %>
+        <%= post.user.name %>
+      <% end %>
+    <% end %>
+  </p>
+</div>
+
+<div class="border p-1">
+  <%= post.caption %>
+</div>
+

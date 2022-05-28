@@ -1,2 +1,23 @@
-<h1>Public::Posts#show</h1>
-<p>Find me in app/views/public/posts/show.html.erb</p>
+<div class="container">
+  <div class="row">
+    <div class="col-md-6">
+      <div>
+        <%= render 'public/posts/show', post: @post %>
+      </div>
+      <div id="like_button_<%= @post.id %>" class="p-1">
+        <%= render 'public/likes/like', post: @post %>
+      </div>
+      <div class="p-1">
+        <%= link_to @stadium.name, stadium_path(@stadium), class: "btn btn-sm btn-info" %>
+        <% if @post.user == current_user %>
+          <%= link_to "編集", edit_post_path(@post), class: "btn btn-sm btn-success" %>
+          <%= link_to "削除", post_path(@post), method: :delete, class: "btn btn-sm btn-danger" %>
+        <% end %>
+      </div>
+    </div>
+
+    <div class="col-md-6">
+      <%= render 'public/comments/comment', {post: @post, comment: @comment} %>
+    </div>
+  </div>
+</div>

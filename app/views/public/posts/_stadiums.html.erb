@@ -1,0 +1,7 @@
+
+    <label for="post_スタジアム">スタジアム</label>
+    <select name="post[stadium_id]" id="post_stadium_id">
+      <% stadiums.each do |stadium| %>
+      <option value="<%= stadium.id %>"><%= stadium.name %></option>
+      <% end %>
+    </select>

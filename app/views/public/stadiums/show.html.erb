@@ -1,0 +1,33 @@
+<div class="container px-5 px-sm-0">
+  <div class="row">
+      <div class="mx-auto">
+        <%= render 'public/stadiums/stadium_info', { stadium: @stadium, q: @q } %>
+      </div>
+  </div>
+
+  <% if current_user.email != "guest@example.com" %>
+    <div class="row">
+      <div class="col-md-4">
+        <div>
+          <%= render 'layouts/error_messages', model: @post %>
+        </div>
+        <div>
+          <%= render 'public/posts/format', { stadium: @stadium, post: @post } %>
+        </div>
+      </div>
+      <div class"col-md-8">
+        <div>
+          <%= render 'public/posts/index', { stadium: @stadium, posts: @posts } %>
+        </div>
+      </div>
+    </div>
+  <% else %>
+    <div class="row">
+      <div class="mx-auto p-2">
+        <div>
+          <%= render 'public/posts/index', { stadium: @stadium, posts: @posts } %>
+        </div>
+      </div>
+    </div>
+  <% end %>
+</div>

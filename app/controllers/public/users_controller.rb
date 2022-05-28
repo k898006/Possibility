@@ -4,12 +4,19 @@ class Public::UsersController < ApplicationController
 
   def show
     @user = User.find(params[:id])
+    #ゲストユーザーページへアクセスしようとした場合、スタジアム一覧へ遷移
+    if @user.id == 4
+      redirect_to stadiums_path
+    else
+      @posts = @user.posts.page(params[:page])
+    end
   end
 
   def edit
     @user = User.find(params[:id])
     if @user == current_user
-    else redirect_to user_path(current_user)
+    else
+      redirect_to user_path(@user)
     end
   end
 
@@ -21,6 +28,17 @@ class Public::UsersController < ApplicationController
     end
   end
 
+  def likes
+    @user = User.find(params[:id])
+    #ゲストユーザーページへアクセスしようとした場合、スタジアム一覧へ遷移
+    if @user.id == 4
+      redirect_to stadiums_path
+    else
+      likes = Like.where(user_id: @user.id).pluck(:post_id)
+      @like_posts = Post.find(likes)
+    end
+  end
+
   private
 
   def user_params
@@ -29,8 +47,9 @@ class Public::UsersController < ApplicationController
 
   def ensure_guest_user
     @user = User.find(params[:id])
-    if @user.name == "ゲストユーザー"
-      redirect_to user_path(current_user), notice: 'ゲストユーザーはプロフィールの編集は行えません'
+    if @user.email == "guest@example.com"
+      redirect_to user_path(current_user)
     end
   end
+
 end

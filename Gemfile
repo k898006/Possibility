@@ -62,3 +62,13 @@ gem 'dotenv-rails'
 group :production do
   gem 'mysql2'
 end
+
+gem 'enum_help'
+
+gem 'jquery-rails'
+
+gem 'ransack'
+
+gem 'rails-i18n'
+
+gem 'kaminari','~> 1.2.1'

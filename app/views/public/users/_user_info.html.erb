@@ -1,0 +1,11 @@
+<h1 class="text-center"><%= user.name %></h1>
+<div class="mx-auto p-1", style="width: 60%;">
+  <%= user.introduction %>
+</div>
+<div class="text-center p-1">
+  投稿数：<%= user.posts.count %>
+  <%= link_to "いいねした投稿", likes_user_path(user), class: "btn btn-sm btn-defaullt text-danger" %>
+  <% if user == current_user && user.email != "guest@example.com" %>
+    <%= link_to "ユーザー情報の編集", edit_user_path(user),  class: "btn btn-sm btn-success" %>
+  <% end %>
+</div>

@@ -1,0 +1,28 @@
+<h1>一覧</h1>
+<div class="p-1">
+  <%= search_form_for @q, url: admin_stadiums_path do |f| %>
+  <%= f.label :name_cont, 'スタジアム名' %>
+  <%= f.search_field :name_cont %>
+  <%= f.submit '検索' %>　<%= link_to "一覧で表示", admin_stadiums_path %>
+<% end %>
+</div>
+<table class="table">
+    <thead>
+        <tr>
+            <th>スタジアム名</th>
+            <th>保有チーム</th>
+            <th></th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        <% stadiums.each do |stadium| %>
+        <tr>
+            <td><%= link_to stadium.name, admin_stadium_path(stadium) %></td>
+            <td><%= stadium.club.name %></td>
+            <td><%= link_to "編集", edit_admin_stadium_path(stadium), class: "btn btn-sm btn-success" %></td>
+        </tr>
+        <% end %>
+        <%= paginate stadiums%>
+    </tbody>
+</table>

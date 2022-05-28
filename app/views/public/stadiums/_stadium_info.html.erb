@@ -1,0 +1,12 @@
+<div class="p-1">
+  <h4><%= stadium.club.name %></h4>
+  <h1><%= stadium.name %></h1>
+</div>
+<div class="p-1">
+  <%= search_form_for @q, url: stadium_path(stadium) do |f| %>
+  <%= f.label :title_or_caption_cont, '検索ワード' %>
+  <%= f.search_field :title_or_caption_cont %>
+  <%= f.hidden_field :stadium_id, value: stadium.id %>
+  <%= f.submit '検索' %>　<%= link_to "一覧で表示", stadium_path(stadium) %>
+<% end %>
+</div>

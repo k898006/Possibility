@@ -1,0 +1,13 @@
+<h1><%= club.name %></h1>
+<p>所属リーグ：<%= club.division_i18n %></p>
+<h5>保有スタジアム</h5>
+<% stadiums.each do |stadium| %>
+  <%= stadium.name %>
+<% end %>
+<div>
+<% if admin_signed_in? %>
+  <%= link_to "クラブの編集", edit_admin_club_path(club) %>
+  <%= link_to "クラブの一覧", admin_clubs_path %>
+<% end %>
+</div>
+

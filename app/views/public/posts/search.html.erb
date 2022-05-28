@@ -1,0 +1,21 @@
+<div class="container px-5 px-sm-0">
+  <div class="row">
+      <div class="mx-auto">
+        <%= render 'stadium_info', { stadium: @stadium, q: @q } %>
+      </div>
+  </div>
+
+  <div class="row">
+    <div class="col-md-4">
+      <div>
+        <%= render 'public/posts/format', { stadium: @stadium, post: @post } %>
+      </div>
+    </div>
+
+    <div class"col-md-8">
+      <div>
+        <%= render 'public/posts/index', { stadium: @stadium, posts: @results } %>
+      </div>
+    </div>
+  </div>
+</div>

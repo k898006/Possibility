@@ -12,20 +12,21 @@
 
   <body>
     <header>
-      <nav>
-        <ul>
-          <% if user_signed_in? %>
-            <li><%= link_to "ログアウト", destroy_user_session_path, method: :delete %></li>
-          <% elsif admin_signed_in? %>
-            <li><%= link_to "ログアウト", destroy_admin_session_path, method: :delete %></li>
-          <% else %>
-            <li><%= link_to "ログイン", new_user_session_path %></li>
-            <li><%= link_to "ゲストとしてログイン", users_guest_sign_in_path, method: :post %></li>
-            <li><%= link_to "新規登録", new_user_registration_path %></li>
-          <% end %>
-        </ul>
-      </nav>
+      <% if current_user == nil && current_admin == nil %>
+        <%= render 'layouts/user_header' %>
+      <% elsif current_user == nil && current_admin.present? %>
+        <%= render 'layouts/admin_header' %>
+      <% else current_user == true && current_admin == nil %>
+        <%= render 'layouts/user_header' %>
+      <% end %>
     </header>
-    <%= yield %>
+    <main>
+        <p class="notice text-success"><%= notice %></p>
+        <p class="alert text-danger"><%= alert %></p>
+        <%= yield %>
+    </main>
+    <footer>
+      <%= render 'layouts/footer' %>
+    </footer>
   </body>
 </html>

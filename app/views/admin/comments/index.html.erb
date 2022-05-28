@@ -1,0 +1,38 @@
+<div class="container">
+  <div class="row">
+    <div class="mx-auto">
+      <div class="p-1 text-center">
+        <%= search_form_for @q, url: admin_comments_path do |f| %>
+          <%= f.search_field :comment_cont, placeholder: "コメントを入力" %>
+          <%= f.submit '検索' %>　<%= link_to "コメント一覧を表示", admin_comments_path %>
+        <% end %>
+      </div>
+      <div class="p-3">
+        <h3>コメント一覧</h3>
+        <table class="table">
+          <thead>
+            <tr>
+              <th>ユーザー</th>
+              <th>コメント</th>
+              <th>投稿</th>
+              <th>日時</th>
+              <th></th>
+            </tr>
+          </thead>
+          <tbody>
+            <% @comments.each do |comment| %>
+            <tr>
+              <td><%= link_to comment.user.name, admin_user_path(comment.user) %></td>
+              <td><%= comment.comment %></td>
+              <td><%= link_to comment.post.title, admin_post_path(comment.post) %></td>
+              <td><%= comment.created_at.strftime('%Y/%-m/%-d %-H:%M') %></td>
+              <td><%= link_to "削除", admin_post_comment_path(comment.post, comment), method: :delete %></td>
+            </tr>
+            <% end %>
+            <%= paginate @comments %>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>

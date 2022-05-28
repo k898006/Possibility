@@ -1,0 +1,40 @@
+<div class="container">
+  <div class="row">
+    <div class="mx-auto p-1">
+      <h1>Possibilityとは</h1><br>
+      <p><strong>
+        ・スタジアムが持つ可能性<br>
+        ・チームが根付く地域の可能性<br>
+        次のスタジアムでの観戦をより楽しむために、<br>
+        スタジアムの魅力と地域の魅力を発信・共有するためのサイトです。
+      </strong></p>
+    </div>
+    <div class="mx-auto p-1 text-center">
+      <p>
+        ログイン後、スタジアムの一覧から気になるスタジアムのページへアクセスし、情報を手に入れましょう！<br>
+        スタジアムについて気に入ったこと・共有したいことがあれば、各スタジアムのページから投稿が可能です！
+      </p>
+    </div>
+  </div>
+
+  <div class="mx-auto text-center">
+    <% if user_signed_in? %>
+      <div class="p-1">
+        <%= link_to "マイページへ", user_path(current_user), class: "btn btn-lg btn-primary w-50" %>
+      </div>
+      <div class="p-1">
+        <%= link_to "スタジアム一覧へ", stadiums_path, class: "btn btn-lg btn-info w-50" %>
+      </div>
+    <% else %>
+    <div class="p-1">
+      <%= link_to "新規登録", new_user_registration_path, class: "btn btn-lg btn-primary w-50" %>
+    </div>
+    <div class="p-1">
+      <%= link_to "ログイン", new_user_session_path, class: "btn btn-lg btn-info w-50" %>
+    </div>
+    <div class="p-1">
+      <%= link_to "ゲストとしてログイン（閲覧のみ）", users_guest_sign_in_path , method: :post, class: "btn btn-lg btn-success w-50" %>
+    </div>
+    <% end %>
+  </div>
+</div>

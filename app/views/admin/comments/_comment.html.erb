@@ -1,0 +1,18 @@
+<h3>コメント</h3>
+  <div class="p-1">
+    <p>コメント数：<%= post.comments.count %>件</p>
+    <% post.comments.each do |comment| %>
+      <div class="p-1">
+        <% if comment.image.attached? %>
+          <%= image_tag comment.image, width: 150, height: 200 %>
+        <% end %>
+      </div>
+      <div class="p-1">
+        <%= comment.user.name %>
+        <%= comment.comment %>
+        <%= comment.created_at.strftime('%Y/%m/%d %-H:%M') %>
+        <%= link_to "削除", admin_post_comment_path(comment.post, comment), method: :delete %>
+      </div>
+    <% end %>
+  </div>
+</div>

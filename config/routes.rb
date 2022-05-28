@@ -1,8 +1,6 @@
 Rails.application.routes.draw do
 
 
-
-
    devise_for :users, controllers: {
     registrations: "public/registrations",
     sessions: "public/sessions"
@@ -18,10 +16,22 @@ Rails.application.routes.draw do
 
   scope module: :public do
     root to:"homes#top"
-    resources :posts, only: [:new, :create, :index, :show] do
-      resources :players, only: [:create]
+    get 'about' => 'homes#about'
+    post 'stadiums/:id', to: 'stadiums#create'
+    resources :stadiums, only: [:index, :create, :show] do
+      collection do
+        get 'search'
+      end
     end
-    resources :users, only: [:show, :edit, :update]
+    resources :posts, only: [ :show, :edit, :update, :destroy] do
+      resources :comments, only: [:create, :destroy]
+      resource :likes, only: [:create, :destroy]
+    end
+    resources :users, only: [:show, :edit, :update] do
+      member do
+        get :likes
+      end
+    end
   end
 
   namespace :admin do
@@ -29,6 +39,12 @@ Rails.application.routes.draw do
     resources :users, only: [:index, :show, :edit, :update]
     get 'users/:id/send_off' => 'users#send_off', as: 'send_off'
     patch 'users/:id/out' => 'users#out', as: 'out'
+    resources :clubs, only: [:create, :index, :edit, :update, :destroy]
+    resources :stadiums, only: [:create, :index, :show, :edit, :update, :destroy]
+    resources :posts, only: [:index, :show, :destroy] do
+      resources :comments, only: [:create, :destroy]
+    end
+    get 'comments' => 'comments#index', as: 'comments'
   end
 
 

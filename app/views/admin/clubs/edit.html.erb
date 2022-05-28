@@ -1,0 +1,23 @@
+<div class="container">
+  <div class="row">
+    <div class="px-auto">
+      <h1><%= @club.name %>の情報編集</h1>
+      <%= form_with model: @club, url: admin_club_path do |f| %>
+        <div class="p-1">
+          <%= f.label :クラブ名 %>
+          <%= f.text_field :name %>
+        </div>
+        <div class="p-1">
+          <%= f.label :所属リーグ %>
+          <%= f.select :division, Club.divisions.keys.map {|k| [I18n.t("enums.club.division.#{k}"), k]} %>
+        </div>
+        <div class="p-1">
+          <%= f.submit "保存", class: "btn btn-sm btn-success" %>
+        </div>
+        <% end %>
+        <div class="p-1">
+        <%= link_to "クラブの一覧", admin_clubs_path, class: "btn btn-sm btn-info" %>
+        </div>
+    </div>
+  </div>
+</div>
