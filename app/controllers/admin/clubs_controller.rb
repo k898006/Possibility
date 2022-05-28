@@ -7,7 +7,8 @@ class Admin::ClubsController < ApplicationController
     if @club.save
       redirect_to admin_clubs_path
     else
-      @clubs = Club.all
+      @q = Club.ransack(params[:q])
+      @clubs = @q.result.page(params[:page])
       render :index
     end
   end
