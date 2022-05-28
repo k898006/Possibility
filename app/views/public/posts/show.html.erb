@@ -4,9 +4,15 @@
       <div>
         <%= render 'public/posts/show', post: @post %>
       </div>
-      <div id="like_button_<%= @post.id %>" class="p-1">
-        <%= render 'public/likes/like', post: @post %>
-      </div>
+      <% if current_user.email == "guest@example.com" %>
+        <div class="p-1">
+          <%= @post.likes.count %> いいね
+        </div>
+      <% else %>
+        <div id="like_button_<%= @post.id %>" class="p-1">
+          <%= render 'public/likes/like', post: @post %>
+        </div>
+      <% end %>
       <div class="p-1">
         <%= link_to @stadium.name, stadium_path(@stadium), class: "btn btn-sm btn-info" %>
         <% if @post.user == current_user %>

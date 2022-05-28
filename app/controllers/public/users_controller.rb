@@ -30,12 +30,13 @@ class Public::UsersController < ApplicationController
 
   def likes
     @user = User.find(params[:id])
-    #ゲストユーザーページへアクセスしようとした場合、スタジアム一覧へ遷移
+    #ゲストユーザーのいいね一覧へアクセスしようとした場合、スタジアム一覧へ遷移
     if @user.id == 4
       redirect_to stadiums_path
     else
       likes = Like.where(user_id: @user.id).pluck(:post_id)
-      @like_posts = Post.find(likes)
+      @posts = Post.find(likes)
+      @like_posts = Kaminari.paginate_array(@posts).page(params[:page])
     end
   end
 
@@ -48,7 +49,7 @@ class Public::UsersController < ApplicationController
   def ensure_guest_user
     @user = User.find(params[:id])
     if @user.email == "guest@example.com"
-      redirect_to user_path(current_user)
+      redirect_to stadiums_path
     end
   end
 

@@ -10,7 +10,8 @@ class Admin::StadiumsController < ApplicationController
     if @stadium.save
       redirect_to admin_stadiums_path
     else
-      @stadiums = Stadium.all
+      @q = Stadium.ransack(params[:q])
+      @stadiums = @q.result.page(params[:page])
       render :index
     end
   end
