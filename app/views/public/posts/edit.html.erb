@@ -11,21 +11,14 @@
         <%= f.select :stadium_id, options_from_collection_for_select(Stadium.all, :id, :name) %>
       </div>
       <div class="p-1">
-      <% if @post.images.attached? %>
-        <p>選択済みの画像（削除する画像にチェックをつけてください）</p>
-        <div class="d-flex px-1">
-          <% @post.images.each do |image| %>
-            <%= f.check_box :image_ids, {multiple: true }, image.id, false %>
-            <label for="post_images_ids_<%= image.id %>" >
-              <%= image_tag image, size: '100x100' %>
-            </label>
-          <% end %>
-        </div>
+      <% if @post.image.attached? %>
+        <%= image_tag @post.image, size: '200x300' %>
+      <% else %>
       <% end %>
       </div>
       <div class="p-1">
         <%= f.label :画像 %>
-        <%= f.file_field :images, multiple: true %>
+        <%= f.file_field :image %>
       </div>
       <div class="p-1">
         <%= f.label :タイトル %>
@@ -36,6 +29,7 @@
         <%= f.text_area :caption %>
       </div>
       <div class="p-1">
+        <%= f.hidden_field :id %>
         <%= f.submit "変更を保存", class: "btn btn-sm btn-success" %>
       <% end %>
       </div>

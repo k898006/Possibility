@@ -1,5 +1,7 @@
 class Admin::StadiumsController < ApplicationController
 
+  before_action :correct_user
+
 
   def create
     @stadium = Stadium.new(stadium_params)
@@ -40,5 +42,12 @@ class Admin::StadiumsController < ApplicationController
   private
   def stadium_params
     params.require(:stadium).permit(:name, :club_id)
+  end
+
+  def correct_user
+    if admin_signed_in?
+    else
+      redirect_to root_path
+    end
   end
 end

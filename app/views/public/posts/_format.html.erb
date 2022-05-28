@@ -1,8 +1,8 @@
 <h5><strong><%= stadium.name %></strong><br>について投稿する</h5>
-<%= form_with model: post, url: posts_path do |f| %>
+<%= form_with model: post, url: stadium_path(@stadium) do |f| %>
   <div class="p-1">
-    <%= f.label :画像 %>　（*画像は3枚まで）
-    <%= f.file_field :images, multiple: true %>
+    <%= f.label :画像 %>
+    <%= f.file_field :image %>
   </div>
   <div class="p-1">
     <%= f.label :タイトル %><br>

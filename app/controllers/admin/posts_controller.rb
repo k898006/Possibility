@@ -1,4 +1,7 @@
 class Admin::PostsController < ApplicationController
+
+  before_action :correct_user
+
   def index
     @posts = Post.all.page(params[:page])
   end
@@ -14,5 +17,12 @@ class Admin::PostsController < ApplicationController
     @post = Post.find(params[:id])
     @post.destroy
     redirect_to admin_posts_path
+  end
+
+  def correct_user
+    if admin_signed_in?
+    else
+      redirect_to root_path
+    end
   end
 end

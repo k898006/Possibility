@@ -1,12 +1,8 @@
 <h2><%= post.title %></h2>
 
 <div class="p-1">
-<% if post.images.attached? %>
-  <% post.images.each do |image| %>
-    <section class="d-flex px-1">
-      <%= image_tag image, width: 150, height: 200 %>
-      <% end %>
-    </section>
+<% if post.image.attached? %>
+  <%= image_tag post.image, width: 200, height: 300 %>
 <% else %>
 <% end %>
 </div>

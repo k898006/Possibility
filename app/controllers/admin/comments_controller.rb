@@ -1,5 +1,7 @@
 class Admin::CommentsController < ApplicationController
 
+  before_action :correct_user
+
   def index
     @q = Comment.ransack(params[:q])
     @comments = @q.result.page(params[:page])
@@ -27,5 +29,12 @@ class Admin::CommentsController < ApplicationController
   private
   def comment_params
     params.require(:comment).permit(:comment)
+  end
+
+  def correct_user
+    if admin_signed_in?
+    else
+      redirect_to root_path
+    end
   end
 end

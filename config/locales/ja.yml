@@ -12,6 +12,8 @@ ja:
         title: タイトル
         caption: 詳細
         images: 画像
+      comment:
+        comment: コメント
       club:
         name: クラブ名
         division: 所属リーグ

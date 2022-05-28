@@ -17,12 +17,13 @@ Rails.application.routes.draw do
   scope module: :public do
     root to:"homes#top"
     get 'about' => 'homes#about'
-    resources :stadiums, only: [:index, :show] do
+    post 'stadiums/:id', to: 'stadiums#create'
+    resources :stadiums, only: [:index, :create, :show] do
       collection do
         get 'search'
       end
     end
-    resources :posts, only: [:create, :show, :edit, :update, :destroy] do
+    resources :posts, only: [ :show, :edit, :update, :destroy] do
       resources :comments, only: [:create, :destroy]
       resource :likes, only: [:create, :destroy]
     end

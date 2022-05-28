@@ -19,6 +19,9 @@
   </div>
 
   <% unless current_user.email == "guest@example.com" %>
+  <div>
+    <%= render 'layouts/error_messages', model: @comment %>
+  </div>
   <div class="p-1">
     <%= form_with model: [post, comment] do |f| %>
     <div class="p-1">

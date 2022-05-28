@@ -1,4 +1,8 @@
 class Admin::UsersController < ApplicationController
+  
+  before_action :correct_user
+  
+  
   def index
     @users = User.all
   end
@@ -34,5 +38,12 @@ class Admin::UsersController < ApplicationController
   private
   def user_params
     params.require(:user).permit(:name, :introduction, :is_valid)
+  end
+  
+  def correct_user
+    if admin_signed_in?
+    else
+      redirect_to root_path
+    end
   end
 end

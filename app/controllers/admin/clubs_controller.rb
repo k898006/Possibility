@@ -1,5 +1,7 @@
 class Admin::ClubsController < ApplicationController
 
+  before_action :correct_user
+
   def create
     @club = Club.new(club_params)
     if @club.save
@@ -33,6 +35,13 @@ class Admin::ClubsController < ApplicationController
 
   def club_params
     params.require(:club).permit(:name, :division)
+  end
+
+  def correct_user
+    if admin_signed_in?
+    else
+      redirect_to root_path
+    end
   end
 
 end

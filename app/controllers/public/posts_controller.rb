@@ -3,20 +3,6 @@ class Public::PostsController < ApplicationController
   before_action :correct_user, only: [:edit, :update]
 
 
-  def create
-    @stadium = Stadium.find(params[:post][:stadium_id])
-    @post = Post.new(post_params)
-    @post.user_id = current_user.id
-    @post.stadium_id = @stadium.id
-    if @post.save
-      redirect_to stadium_path(@stadium)
-    else
-      @q = @stadium.posts.ransack(params[:q])
-      @posts = @q.result.page(params[:page])
-      render template:  "public/stadiums/show"
-    end
-  end
-
   def show
     @post = Post.find(params[:id])
     @user = @post.user
@@ -31,19 +17,9 @@ class Public::PostsController < ApplicationController
 
   def update
     @post = Post.find(params[:id])
-    #画像の個別削除
-    if params[:post][:image_ids]
-      params[:post][:image_ids].each do |image_id|
-        image = @post.images.find(image_id)
-        image.purge
-      end
-    end
     if @post.update(post_params)
       redirect_to post_path(@post)
     else
-      @post.images.each do |image|
-        image.purge
-      end
       render :edit
     end
   end
@@ -65,7 +41,7 @@ class Public::PostsController < ApplicationController
   end
 
   def post_params
-    params.require(:post).permit(:stadium_id, :title, :caption, images: [])
+    params.require(:post).permit(:stadium_id, :title, :caption, :image)
   end
 
 end

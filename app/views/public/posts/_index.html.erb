@@ -4,7 +4,7 @@
     <thead>
       <tr>
         <th>ユーザー</th>
-        <th>画像枚数</th>
+        <th>画像</th>
         <th>タイトル</th>
         <th>コメント数</th>
         <th>いいね数</th>
@@ -17,7 +17,13 @@
         <% if admin_signed_in? %>
           <tr>
             <td><%= link_to post.user.name, admin_user_path(post.user) %></td>
-            <td><%= post.images.count %>枚</td>
+            <td>
+              <% if post.image.attached? %>
+                画像有り
+              <% else %>
+                画像なし
+              <% end %>
+            </td>
             <td><%= link_to post.title, admin_post_path(post) %></td>
             <td><%= post.comments.count %>コメント</td>
             <td><%= post.likes.count %>いいね</td>
@@ -27,7 +33,13 @@
         <% else %>
           <tr>
             <td><%= link_to post.user.name, user_path(post.user) %></td>
-            <td><%= post.images.count %>枚</td>
+            <td>
+              <% if post.image.attached? %>
+                有
+              <% else %>
+                無
+              <% end %>
+            </td>
             <td><%= link_to post.title, post_path(post) %></td>
             <td><%= post.comments.count %>コメント</td>
             <td><%= post.likes.count %>いいね</td>
