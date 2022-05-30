@@ -1,4 +1,6 @@
 class Public::StadiumsController < ApplicationController
+  
+  before_action :authenticate_user!
 
   def create
     @stadium = Stadium.find(params[:post][:stadium_id])

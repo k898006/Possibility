@@ -1,11 +1,12 @@
 class Public::UsersController < ApplicationController
 
+  before_action :authenticate_user!
   before_action :ensure_guest_user, only: [:edit]
 
   def show
     @user = User.find(params[:id])
     #ゲストユーザーページへアクセスしようとした場合、スタジアム一覧へ遷移
-    if @user.id == 4
+    if @user.email == "guest@example.com"
       redirect_to stadiums_path
     else
       @posts = @user.posts.page(params[:page])
