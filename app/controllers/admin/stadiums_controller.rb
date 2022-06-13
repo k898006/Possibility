@@ -24,7 +24,7 @@ class Admin::StadiumsController < ApplicationController
 
   def show
     @stadium = Stadium.find(params[:id])
-    @posts = @stadium.posts.page(params[:page])
+    @posts = @stadium.posts.page(params[:page]).order(created_at: "DESC")
   end
 
   def edit

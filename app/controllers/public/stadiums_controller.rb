@@ -25,7 +25,7 @@ class Public::StadiumsController < ApplicationController
     @stadium = Stadium.find(params[:id])
     @post = Post.new
     @q = @stadium.posts.ransack(params[:q])
-    @posts = @q.result.page(params[:page])
+    @posts = @q.result.page(params[:page]).order(created_at: "DESC")
   end
 
   private

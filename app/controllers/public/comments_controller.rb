@@ -1,24 +1,25 @@
 class Public::CommentsController < ApplicationController
   def create
-    post = Post.find(params[:post_id])
-    comment = Comment.new(comment_params)
-    comment.user_id = current_user.id
-    comment.post_id = post.id
-    if comment.save
-      redirect_to post_path(post)
+    @post = Post.find(params[:post_id])
+    @comment = Comment.new(comment_params)
+    @comment.user_id = current_user.id
+    @comment.post_id = @post.id
+    if @comment.save
+      render :comments
     else
-      @post = post
-      @user = post.user
-      @stadium = post.stadium
-      @comment = comment
+      @user = @post.user
+      @stadium = @post.stadium
       render template: 'public/posts/show'
     end
   end
 
   def destroy
-    comment = Comment.find(params[:id])
-    comment.destroy
-    redirect_to post_path(params[:post_id])
+    @post = Post.find(params[:post_id])
+    @user = @post.user
+    @stadium = @post.stadium
+    @comment = Comment.find(params[:id])
+    @comment.destroy
+    render :comments
   end
 
   private

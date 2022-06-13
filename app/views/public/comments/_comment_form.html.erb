@@ -1,0 +1,18 @@
+<div>
+    <%= render 'layouts/error_messages', model: @comment %>
+</div>
+<div class="p-1">
+  <%= form_with model: [post, comment], local: false do |f| %>
+  <div class="p-1">
+    <%= f.label :画像 %>
+    <%= f.file_field :image %>
+  </div>
+  <div class="p-1">
+    <%= f.label :コメント %><br>
+    <%= f.text_area :comment %>
+  </div>
+  <div class="p-1">
+    <%= f.submit "コメント送信", class: "btn btn-sm btn-success" %>
+  <% end %>
+  </div>
+</div>

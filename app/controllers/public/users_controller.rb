@@ -9,7 +9,7 @@ class Public::UsersController < ApplicationController
     if @user.email == "guest@example.com"
       redirect_to stadiums_path
     else
-      @posts = @user.posts.page(params[:page])
+      @posts = @user.posts.page(params[:page]).order(created_at: "DESC")
     end
   end
 
@@ -32,7 +32,7 @@ class Public::UsersController < ApplicationController
   def likes
     @user = User.find(params[:id])
     #ゲストユーザーのいいね一覧へアクセスしようとした場合、スタジアム一覧へ遷移
-    if @user.id == 4
+    if @user.email == "guest@example.com"
       redirect_to stadiums_path
     else
       likes = Like.where(user_id: @user.id).pluck(:post_id)

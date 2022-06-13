@@ -3,7 +3,7 @@ class Admin::PostsController < ApplicationController
   before_action :correct_user
 
   def index
-    @posts = Post.all.page(params[:page])
+    @posts = Post.all.page(params[:page]).order(created_at: "DESC")
   end
 
   def show

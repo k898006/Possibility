@@ -4,7 +4,7 @@ class Admin::CommentsController < ApplicationController
 
   def index
     @q = Comment.ransack(params[:q])
-    @comments = @q.result.page(params[:page])
+    @comments = @q.result.page(params[:page]).order(created_at: "DESC")
   end
 
   def create
