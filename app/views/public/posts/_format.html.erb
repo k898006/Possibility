@@ -2,7 +2,7 @@
 <%= form_with model: post, url: stadium_path(@stadium) do |f| %>
   <div class="p-1">
     <%= f.label :画像 %>
-    <%= f.file_field :image %>
+    <%= f.file_field :images, multiple: true %>
   </div>
   <div class="p-1">
     <%= f.label :タイトル %><br>

@@ -18,7 +18,7 @@
           <tr>
             <td><%= link_to post.user.name, admin_user_path(post.user) %></td>
             <td>
-              <% if post.image.attached? %>
+              <% if post.images.attached? %>
                 画像有り
               <% else %>
                 画像なし
@@ -34,7 +34,7 @@
           <tr>
             <td><%= link_to post.user.name, user_path(post.user) %></td>
             <td>
-              <% if post.image.attached? %>
+              <% if post.images.attached? %>
                 有
               <% else %>
                 無

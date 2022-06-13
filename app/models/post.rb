@@ -3,7 +3,7 @@ class Post < ApplicationRecord
   validates :title, presence: true
   validates :caption, presence: true
 
-  has_one_attached :image
+  has_many_attached :images
 
   belongs_to :user
   belongs_to :stadium

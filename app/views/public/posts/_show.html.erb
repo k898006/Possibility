@@ -1,8 +1,8 @@
 <h2><%= post.title %></h2>
 
 <div class="p-1">
-<% if post.image.attached? %>
-  <%= image_tag post.image, width: 200, height: 300 %>
+<% if post.images.attached? %>
+  <%= image_tag post.images[0] %>
 <% else %>
 <% end %>
 </div>
