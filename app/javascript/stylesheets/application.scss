@@ -1,3 +1,38 @@
 @import '~bootstrap/scss/bootstrap';
 @import '~@fortawesome/fontawesome-free/scss/fontawesome';
 
+.list {
+  flex-wrap: wrap;
+  margin: 40px -20px 0;
+  display: flex;
+}
+.list li {
+  text-align:center;
+  opacity: 1;
+  height:auto;
+  flex-basis: calc(33.33333% - 20px);
+  max-width: calc(33.33333% - 20px);
+  transition: all .4s ease 0s;
+  overfllow:hidden;
+}
+.list li.is-hidden {
+  visibility: hidden;
+  opacity: 0;
+  height: 0;
+  margin: 0 10px;
+  padding:0;
+}
+.more {
+  text-align: center;
+  margin-top: 20px;
+}
+button {
+  background-color: #5C6BC0;
+  border: none;
+  cursor: pointer;
+  outline: none;
+  color:#fff;
+  padding: 0;
+  width: 160px;
+  border-radius: 20px;
+}

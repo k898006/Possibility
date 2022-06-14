@@ -15,7 +15,7 @@
         <P>選択済みの画像（削除する画像にチェックをつけてください）</P>
         <div style="display: flex; flex-wrap: wrap; width: 200px height: 300px;">
           <% @post.images.each do |image| %>
-          <div style="display: flex; margin: 5px;">
+          <div style="margin: 5px;">
             <%= f.check_box :image_ids, { multiple: true }, image.id, false %>
             <label for="post_image_ids_<%= image.id %>">
               <%= image_tag image, size: '200x300' %>

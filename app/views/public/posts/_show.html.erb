@@ -2,7 +2,17 @@
 
 <div class="p-1">
 <% if post.images.attached? %>
-  <%= image_tag post.images[0] %>
+  <!--<script src="images.js"></script>-->
+  <ul class= "list display: flex; flex-wrap: wrap; width: 200px height: 300px;">
+    <% post.images.each do |image| %>
+      <li>
+        <%= image_tag image, size: '200x300' %>
+      </li>
+    <% end %>
+  </div>
+  <div class="more">
+    <button>もっと見る</button>
+  </div>
 <% else %>
 <% end %>
 </div>
