@@ -3,48 +3,46 @@
   <table class="table">
     <thead>
       <tr>
-        <th>ユーザー</th>
-        <th>画像</th>
-        <th>タイトル</th>
-        <th>コメント数</th>
-        <th>いいね数</th>
-        <th>投稿日時</th>
-        <th></th>
+        <th style="width: 20%">ユーザー</th>
+        <th style="width: 10%"></th>
+        <th style="width: 20%">タイトル</th>
+        <th style="width: 15%">コメント数</th>
+        <th style="width: 15%">いいね数</th>
+        <th style="width: 10%">投稿日時</th>
+        <th style="width: 10%"></th>
       </tr>
     </thead>
     <tbody>
       <% posts.each do |post| %>
         <% if admin_signed_in? %>
           <tr>
-            <td><%= link_to post.user.name, admin_user_path(post.user) %></td>
-            <td>
+            <td style="width: 20%"><%= link_to post.user.name, admin_user_path(post.user) %></td>
+            <td style="width: 10%">
               <% if post.images.attached? %>
-                画像有り
+                <%= image_tag post.images[0], size: '75x100' %>
               <% else %>
-                画像なし
               <% end %>
             </td>
-            <td><%= link_to post.title, admin_post_path(post) %></td>
-            <td><%= post.comments.count %>コメント</td>
-            <td><%= post.likes.count %>いいね</td>
-            <td><%= post.created_at.strftime('%Y/%-m/%-d %H:%M') %></td>
-            <td><%= link_to "削除", admin_post_path(post), method: :delete, class: "btn btn-sm btn-danger" %></td>
+            <td style="width: 20%"><%= link_to post.title, admin_post_path(post) %></td>
+            <td style="width: 15%"><%= post.comments.count %>コメント</td>
+            <td style="width: 15%"><%= post.likes.count %>いいね</td>
+            <td style="width: 10%"><%= post.created_at.strftime('%Y/%-m/%-d %H:%M') %></td>
+            <td style="width: 10%"><%= link_to "削除", admin_post_path(post), method: :delete, class: "btn btn-sm btn-danger" %></td>
           </tr>
         <% else %>
           <tr>
-            <td><%= link_to post.user.name, user_path(post.user) %></td>
-            <td>
+            <td style="width: 20%"><%= link_to post.user.name, user_path(post.user) %></td>
+            <td style="width: 10%">
               <% if post.images.attached? %>
-                有
+                <%= image_tag post.images[0], size: '75x100' %>
               <% else %>
-                無
               <% end %>
             </td>
-            <td><%= link_to post.title, post_path(post) %></td>
-            <td><%= post.comments.count %>コメント</td>
-            <td><%= post.likes.count %>いいね</td>
-            <td><%= post.created_at.strftime('%Y/%-m/%-d %H:%M') %></td>
-            <td>
+            <td style="width: 20%"><%= link_to post.title, post_path(post) %></td>
+            <td style="width: 15%"><%= post.comments.count %>コメント</td>
+            <td style="width: 15%"><%= post.likes.count %>いいね</td>
+            <td style="width: 10%"><%= post.created_at.strftime('%Y/%-m/%-d %H:%M') %></td>
+            <td style="width: 10%">
               <% if post.user == current_user %>
                 <%= link_to "編集", edit_post_path(post), class: "btn btn-sm btn-success" %>
                 <%= link_to "削除", post_path(post), method: :delete, class: "btn btn-sm btn-danger" %>

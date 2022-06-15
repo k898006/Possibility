@@ -31,7 +31,7 @@ class Public::StadiumsController < ApplicationController
   private
 
   def post_params
-    params.require(:post).permit(:stadium_id, :title, :caption, :image)
+    params.require(:post).permit(:stadium_id, :title, :caption, images: [])
   end
 
 

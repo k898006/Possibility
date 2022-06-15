@@ -7,7 +7,7 @@
   display: flex;
 }
 .list li {
-  text-align:center;
+  content-align:center;
   opacity: 1;
   height:auto;
   flex-basis: calc(33.33333% - 20px);
@@ -24,7 +24,7 @@
 }
 .more {
   text-align: center;
-  margin-top: 20px;
+  margin-top: 5px;
 }
 button {
   background-color: #5C6BC0;

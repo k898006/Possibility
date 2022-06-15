@@ -3,6 +3,7 @@ class Public::PostsController < ApplicationController
   before_action :authenticate_user!
   before_action :correct_user, only: [:edit, :update]
 
+  #createはcontroller/public/stadiumsに記述
 
   def show
     @post = Post.find(params[:id])

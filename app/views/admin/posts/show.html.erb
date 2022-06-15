@@ -1,17 +1,19 @@
 <div class="container">
   <div class="row">
-    <div class="col-md-6">
+    <div class="col-md-12">
       <div>
         <%= render 'public/posts/show', post: @post %>
       </div>
-      <div class="p-1">
+      <div class="p-2">
         <%= link_to @stadium.name, admin_stadium_path(@stadium), class: "btn btn-sm btn-info" %>
         <%= link_to "投稿の一覧へ", admin_posts_path, class: "btn btn-sm btn-primary" %>
         <%= link_to "削除", admin_post_path(@post), method: :delete, class: "btn btn-sm btn-danger" %>
       </div>
     </div>
+  </div>
 
-    <div class="col-md-6">
+  <div class="row">
+    <div class="col-md-12 text-center">
       <%= render 'admin/comments/comment', {post: @post, comment: @comment} %>
     </div>
   </div>
