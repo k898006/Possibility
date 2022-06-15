@@ -20,7 +20,8 @@
 
 
 ## 設計書
-
+- 設計書 : https://docs.google.com/spreadsheets/d/1Y31vOaLPvnhCekY0LmNIXlUqz8uxycG8M1JKx0jvwXg/edit#gid=1031934256
+- テスト仕様書：https://docs.google.com/spreadsheets/d/19-KRKZke1rs61hRBKD_uotCTQl-BpzNp/edit#gid=547097470
 
 ## 開発環境
 - OS：Linux(CentOS)
