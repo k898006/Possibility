@@ -19,8 +19,7 @@
             <td style="width: 20%"><%= link_to post.user.name, admin_user_path(post.user) %></td>
             <td style="width: 10%">
               <% if post.images.attached? %>
-                <%= image_tag post.images[0], size: '75x100' %>
-              <% else %>
+                <%= image_tag post.images[0], class: "width: 10%;" %>
               <% end %>
             </td>
             <td style="width: 20%"><%= link_to post.title, admin_post_path(post) %></td>
@@ -35,7 +34,6 @@
             <td style="width: 10%">
               <% if post.images.attached? %>
                 <%= image_tag post.images[0], size: '75x100' %>
-              <% else %>
               <% end %>
             </td>
             <td style="width: 20%"><%= link_to post.title, post_path(post) %></td>
